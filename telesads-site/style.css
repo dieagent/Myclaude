@@ -397,3 +397,125 @@ html:not(.js) .faq-a { height: auto; }
 .project-panel { position: absolute; inset: 0; background: var(--c); clip-path: inset(0 0 100% 0); pointer-events: none; }
 .project-brush path { fill: none; stroke: var(--ink); stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; }
 @media (hover: none) { .project-brush, .project-panel, .project-hover { display: none; } }
+
+/* =========================================================
+   ABOUT PAGE
+   ========================================================= */
+.nav-pill[aria-current="page"] { background: var(--ink); color: #fff; }
+
+/* ---------- Hero ---------- */
+.ab-hero { position: relative; min-height: 100vh; min-height: 100svh; background: var(--cream); padding: 6.5rem var(--gutter) 0; overflow: hidden; }
+.ab-title { position: relative; z-index: 2; font-family: var(--f-display); font-weight: 800; font-stretch: 75%; text-transform: uppercase; color: var(--orange); line-height: 0.82; letter-spacing: -0.015em; }
+.ab-line { display: block; white-space: nowrap; }
+.ab-line--1 { font-size: 8.5rem; text-align: right; padding-right: 3rem; }
+.ab-line--2 { font-size: 10.6rem; }
+.ab-line .ch { display: inline-block; }
+.ab-pill { position: absolute; z-index: 3; font-size: 1.125rem; }
+.ab-swirl { position: absolute; right: -4rem; top: 26rem; width: 25rem; height: 44rem; overflow: visible; z-index: 1; }
+.ab-swirl path { fill: none; stroke: var(--orange); stroke-width: 28; stroke-linecap: round; }
+.ab-art { position: relative; z-index: 2; display: block; width: 44rem; margin: -1rem 0 0 2rem; overflow: visible; }
+.ab-art .aa { transform-box: fill-box; transform-origin: 50% 50%; }
+.ab-intro { position: absolute; z-index: 2; left: 52%; top: 31rem; width: 27rem; color: var(--orange); font-size: 1.75rem; line-height: 1.25; letter-spacing: -0.01em; }
+.ab-intro .ln { display: block; }
+
+/* ---------- Story + team (shared orange flood) ---------- */
+.story-team { position: relative; overflow: clip; }
+.story { position: relative; padding: 4rem var(--gutter) 10rem; }
+.story-path { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0; }
+.story-path path { fill: none; stroke: var(--orange); stroke-width: 100; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.story-block { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; min-height: 80vh; }
+.story-block--1 .story-copy { padding-left: 4rem; }
+.story-block--2 .story-copy { padding-right: 4rem; }
+.story-art { width: 100%; max-width: 30rem; justify-self: center; overflow: visible; }
+.story-tag { font-family: var(--f-body); font-weight: 600; font-size: 19px; fill: #fff; }
+.story-tag--ink { fill: var(--ink); }
+.story-copy { max-width: 34rem; }
+.story-label { font-size: 0.875rem; font-weight: 500; text-transform: uppercase; color: var(--orange); margin-bottom: 1.25rem; }
+.story-title { font-family: var(--f-display); font-weight: 700; font-stretch: 87.5%; text-transform: none; font-size: 2.9rem; line-height: 0.98; letter-spacing: -0.035em; color: var(--orange); margin-bottom: 1.5rem; }
+.story-text { font-size: 1.1875rem; line-height: 1.4; color: var(--orange); }
+.story-copy .ln, .story-copy .ch { display: inline-block; }
+
+.team { position: relative; z-index: 1; padding: 8rem 0 6rem; background: rgba(255, 92, 0, 0); color: var(--ink); }
+.team .sec-title { color: inherit; }
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding: 0 var(--gutter); }
+.member-photo { aspect-ratio: 5 / 6; border-radius: 1rem; overflow: hidden; border: 0.4rem solid var(--ink); background: var(--cream-2); }
+.member-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.member h3 { margin-top: 1.25rem; font-family: var(--f-display); font-weight: 700; font-stretch: 87.5%; font-size: 2.25rem; letter-spacing: -0.03em; line-height: 1; word-break: break-all; }
+.member p { margin-top: 0.4rem; font-size: 0.875rem; font-weight: 500; text-transform: uppercase; opacity: 0.85; }
+
+/* ---------- Moodboard ---------- */
+.moodboard { position: relative; z-index: 2; background: var(--cream); padding: 8rem 0 6rem; overflow: hidden; }
+.mood-row { margin-top: 1.25rem; }
+.mood-row .slider-track { gap: 1.25rem; }
+.mood { flex: none; width: 18rem; aspect-ratio: 4 / 5; border-radius: 0.75rem; overflow: hidden; background: var(--cream-2); }
+.mood img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- House rules (sticky stack) ---------- */
+.rules { background: var(--cream); padding: 4rem var(--gutter) 8rem; }
+.rule {
+  position: sticky; top: calc(5rem + var(--i, 0) * 5rem);
+  display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "bar bar" "label label" "title text";
+  column-gap: 4rem; background: var(--cream); padding: 1.25rem 0 6rem; min-height: 20rem;
+}
+.rule-bar { grid-area: bar; position: relative; display: block; height: 2px; background: #E6D6CB; margin-bottom: 1.25rem; overflow: hidden; }
+.rule-bar i { position: absolute; inset: 0; background: var(--orange); transform-origin: 0 50%; transform: scaleX(0); }
+.rule-label { grid-area: label; font-size: 0.875rem; font-weight: 500; text-transform: uppercase; margin-bottom: 1.5rem; }
+.rule-title { grid-area: title; font-family: var(--f-display); font-weight: 800; font-stretch: 75%; text-transform: uppercase; color: var(--orange); font-size: 4.5rem; line-height: 0.86; letter-spacing: -0.01em; max-width: 34rem; }
+.rule-title .ch { display: inline-block; }
+.rule-text { grid-area: text; align-self: start; font-size: 1.125rem; line-height: 1.4; max-width: 30rem; justify-self: end; }
+.rules-spacer { height: 30vh; }
+
+/* ---------- Capabilities ---------- */
+.caps { background: var(--cream); padding: 6rem var(--gutter) 9rem; }
+.cap-list { list-style: none; margin: 1rem auto 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.9rem 0.75rem; max-width: 76rem; }
+.cap-list li {
+  position: relative; overflow: hidden; isolation: isolate; cursor: default;
+  border: 1.5px solid var(--orange); color: var(--orange); border-radius: 999px;
+  padding: 0.7rem 1.5rem; font-size: 1.125rem; font-weight: 500; white-space: nowrap;
+}
+.cap-fill { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.cap-fill svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.cap-fill path { fill: none; stroke: var(--orange); stroke-linecap: round; }
+.caps-cta { display: flex; justify-content: center; margin-top: 3.5rem; }
+
+/* ---------- About: tablet & mobile ---------- */
+@media (max-width: 991px) {
+  .ab-line--1 { font-size: 6rem; padding-right: 0; }
+  .ab-line--2 { font-size: 7.4rem; }
+  .ab-intro { position: relative; left: auto; right: auto; top: auto; width: auto; max-width: 30rem; margin: 2rem 0 3rem auto; }
+  .ab-art { width: 40rem; }
+  .story-block { grid-template-columns: 1fr; gap: 2rem; min-height: 0; padding: 4rem 0; }
+  .story-block--1 .story-copy, .story-block--2 .story-copy { padding: 0; }
+  .story-block--2 .story-art { order: -1; }
+  .team-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .rule { grid-template-columns: 1fr; grid-template-areas: "bar" "label" "title" "text"; row-gap: 1.25rem; }
+  .rule-text { justify-self: start; }
+}
+@media (max-width: 767px) {
+  .ab-hero { padding-top: 5.5rem; }
+  .ab-line--1 { font-size: 3.4rem; text-align: left; }
+  .ab-line--2 { font-size: 3.4rem; white-space: normal; }
+  .ab-pill { font-size: 0.75rem; padding: 0.35rem 0.8rem; }
+  .ab-swirl { width: 12rem; height: 21rem; right: -4rem; top: 17rem; }
+  .ab-swirl path { stroke-width: 22; }
+  .ab-art { width: 115%; margin: 1rem 0 0 -5%; }
+  .ab-intro { font-size: 1.25rem; margin: 1.5rem 0 3rem; }
+  .story { padding: 2rem var(--gutter) 6rem; }
+  .story-path path { stroke-width: 50; }
+  .story-art { max-width: 17rem; }
+  .story-copy { background: var(--cream); border-radius: 1.25rem; padding: 1.25rem !important; box-shadow: 0 0 0 0.5rem var(--cream); }
+  .story-title { font-size: 2.1rem; }
+  .story-text { font-size: 1.0625rem; }
+  .team { padding: 5rem 0 4rem; }
+  .team-grid { grid-template-columns: 1fr; gap: 2rem; padding: 0 1.5rem; }
+  .member h3 { font-size: 1.9rem; }
+  .moodboard { padding: 5rem 0 4rem; }
+  .mood { width: 11rem; }
+  .rules { padding: 2rem var(--gutter) 5rem; }
+  .rule { top: calc(4.5rem + var(--i, 0) * 3rem); min-height: 0; padding-bottom: 4rem; }
+  .rule-title { font-size: 2.75rem; }
+  .rule-text { font-size: 1rem; }
+  .caps { padding: 4rem var(--gutter) 6rem; }
+  .cap-list li { font-size: 0.875rem; padding: 0.5rem 1rem; }
+}
+.ab-line .wd { display: inline-block; white-space: nowrap; }

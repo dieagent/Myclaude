@@ -14,6 +14,7 @@
   var animated = hasGSAP && !reduce;
   var lenis = null;
   var loaderDone = false;
+  var page = (document.body && document.body.dataset.page) || "home";
 
   function $(s, c) { return (c || document).querySelector(s); }
   function $$(s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); }
@@ -65,19 +66,30 @@
 
   var fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
   Promise.race([fontsReady, new Promise(function (r) { setTimeout(r, 2500); })]).then(function () {
-    placeServices();
-    setupHero();
+    if (page === "home") {
+      placeServices();
+      setupHero();
+    } else {
+      setupAboutHero();
+    }
     runLoader();
-    initRibbon();
-    initAbout();
     initDualHeadings();
     initSplitHeadings();
-    initProjects();
-    initProjectsEnd();
-    initServices();
+    if (page === "home") {
+      initRibbon();
+      initAbout();
+      initProjects();
+      initProjectsEnd();
+      initServices();
+      initDeck(true);
+      initFaq(true);
+    } else {
+      initStory();
+      initTeam();
+      initRules();
+      initCaps();
+    }
     initSlider();
-    initDeck(true);
-    initFaq(true);
     initFooter();
     initKineticLinks();
     initMagnetic();
@@ -100,6 +112,19 @@
       ScrollTrigger.refresh();
     }
     setTimeout(exit, 6000);   // hard safety: never lock the visitor out
+
+    // Mark internal page-to-page navigation so the next page skips the loader.
+    $$('a[href$=".html"], a[href*=".html#"]').forEach(function (a) {
+      a.addEventListener("click", function () { try { sessionStorage.setItem("teles-nav", "1"); } catch (e) {} });
+    });
+    var internal = false;
+    try { internal = sessionStorage.getItem("teles-nav") === "1"; sessionStorage.removeItem("teles-nav"); } catch (e) {}
+    var navType = (performance.getEntriesByType && performance.getEntriesByType("navigation")[0] || {}).type;
+    if (internal && navType !== "reload") {
+      gsap.to(loader, { opacity: 0, duration: 0.3, onComplete: function () { gsap.set(loader, { clearProps: "opacity" }); } });
+      exit();
+      return;
+    }
 
     var tMark = $$(".lg-0", loader);
     var letters = $$(".lg:not(.lg-0)", loader);
@@ -684,24 +709,32 @@
   function initSlider() {
     $$(".slider").forEach(function (slider) {
       var track = $(".slider-track", slider);
-      var originals = $$(".slide", track);
+      var originals = Array.prototype.slice.call(track.children);
       var level = Math.min(5, Math.max(1, parseInt(slider.dataset.speed || "1", 10)));
       var base = 1.5 * (1 + 0.3 * (level - 1));
-      var setW = 0, x = 0, dir = -1, boost = 0, slides = [];
+      var baseDir = parseFloat(slider.dataset.dir || "-1") < 0 ? -1 : 1;   // -1 moves left, +1 moves right
+      var scaleNearCentre = !slider.classList.contains("mood-row");
+      var setW = 0, x = 0, scrollSign = 1, eff = baseDir, boost = 0, hover = 1, hoverTarget = 1, items = [];
 
       function build() {
-        $$(".slide.is-clone", track).forEach(function (c) { c.remove(); });
+        $$(".is-clone", track).forEach(function (c) { c.remove(); });
         var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
         setW = originals.reduce(function (w, sl) { return w + sl.getBoundingClientRect().width + gap; }, 0);
-        var sets = Math.max(2, Math.ceil((window.innerWidth * 3) / setW));
+        var sets = Math.max(2, Math.ceil((window.innerWidth * 3.5) / Math.max(1, setW)));
         for (var k = 1; k < sets; k++) originals.forEach(function (sl) {
           var c = sl.cloneNode(true); c.classList.add("is-clone"); c.setAttribute("aria-hidden", "true"); track.appendChild(c);
         });
-        slides = $$(".slide", track);
+        items = Array.prototype.slice.call(track.children);
+        if (baseDir > 0 && x === 0) x = -setW;
       }
       build();
       window.addEventListener("resize", debounce(build, 200));
       window.addEventListener("load", build);
+
+      if (canHover && slider.hasAttribute("data-hover-slow")) {
+        slider.addEventListener("mouseenter", function () { hoverTarget = 0.2; });
+        slider.addEventListener("mouseleave", function () { hoverTarget = 1; });
+      }
 
       var setX = gsap.quickSetter(track, "x", "px");
       var inView = true;
@@ -710,15 +743,18 @@
 
       gsap.ticker.add(function (t, delta) {
         if (!inView || !setW) return;
-        if (lenis && lenis.direction) dir = lenis.direction > 0 ? -1 : 1;
+        if (lenis && lenis.direction) scrollSign = lenis.direction > 0 ? 1 : -1;
+        eff += (baseDir * scrollSign - eff) * 0.06;            // ease direction changes
         var v = lenis ? Math.abs(lenis.velocity) : 0;
         boost += (Math.min(v * 0.5, 22) - boost) * 0.08;
-        x += (base + boost) * dir * (delta / 16.67);
+        hover += (hoverTarget - hover) * 0.08;
+        x += (base + boost) * hover * eff * (delta / 16.67);
         while (x <= -setW) x += setW;
         while (x > 0) x -= setW;
         setX(x);
+        if (!scaleNearCentre) return;
         var cx = window.innerWidth / 2;
-        slides.forEach(function (sl) {
+        items.forEach(function (sl) {
           var r = sl.getBoundingClientRect();
           if (r.right < -200 || r.left > window.innerWidth + 200) return;
           var d = Math.min(1, Math.abs(r.left + r.width / 2 - cx) / cx);
@@ -726,6 +762,156 @@
         });
       });
     });
+  }
+
+  /* =========================================================
+     ABOUT PAGE
+     ========================================================= */
+
+  /* Hero: letters bounce up, pills pop, swirl draws, illustration pops, intro rises line by line */
+  function setupAboutHero() {
+    var lines = $$(".ab-line");
+    var chars = [];
+    lines.forEach(function (l) { chars = chars.concat(SplitText.create(l, { type: "words,chars", charsClass: "ch", wordsClass: "wd", mask: "chars" }).chars); });
+    var pills = $$(".ab-pill");
+    pills.forEach(function (p) { wrapPillText(p); gsap.set(p, { rotation: readRot(p), scale: 0, y: 30 }); gsap.set($(".pill-mask > span", p), { yPercent: 105 }); });
+    var swirl = $(".ab-swirl path");
+    var arts = $$(".ab-art .aa");
+    var intro = $(".ab-intro");
+    var introLines = intro ? SplitText.create(intro, { type: "lines", mask: "lines", linesClass: "ln" }).lines : [];
+
+    gsap.set(chars, { yPercent: 110 });
+    gsap.set(swirl, { drawSVG: "0%", strokeWidth: 0 });
+    gsap.set(arts, { scale: 0, rotation: -15 });
+    gsap.set(introLines, { yPercent: 110 });
+
+    var tl = gsap.timeline({ paused: true });
+    tl.to(chars, { yPercent: 0, duration: 0.9, ease: "back.out(1.7)", stagger: 0.022 })
+      .to(swirl, { drawSVG: "100%", strokeWidth: isMobile() ? 22 : 28, duration: 1.4, ease: "power2.inOut" }, 0.2)
+      .to(arts, { scale: 1, rotation: 0, duration: 0.9, ease: "back.out(1.8)", stagger: 0.1 }, 0.45)
+      .to(introLines, { yPercent: 0, duration: 0.9, ease: "back.out(1.4)", stagger: 0.08 }, 0.7);
+    pills.forEach(function (p, i) {
+      var t = 0.6 + i * 0.15;
+      tl.to(p, { scale: 1, y: 0, duration: 0.75, ease: "back.out(2.2)" }, t)
+        .to($(".pill-mask > span", p), { yPercent: 0, duration: 0.6, ease: "power3.out" }, t + 0.18);
+    });
+    tl.add(function () {
+      gsap.to(".aa-plane", { y: -12, rotation: 3, duration: 1.8, ease: "sine.inOut", yoyo: true, repeat: -1 });
+      gsap.to(".aa-bubble", { y: 8, duration: 1.4, ease: "sine.inOut", yoyo: true, repeat: -1 });
+      gsap.to(".aa-burst", { scale: 1.08, duration: 0.6, ease: "sine.inOut", yoyo: true, repeat: -1 });
+      gsap.to(".aa-blob", { rotation: 20, duration: 3, ease: "sine.inOut", yoyo: true, repeat: -1 });
+    }, 1.8);
+    onLoaderDone(function () { tl.play(); });
+  }
+
+  /* Story: a thick orange line draws through the story, then its stroke
+     widens until it floods the team section orange */
+  function initStory() {
+    var path = $(".story-path path");
+    var team = $(".team");
+    if (!path || !team) return;
+    var baseW = function () { return window.innerWidth < 768 ? 50 : window.innerWidth < 992 ? 75 : 100; };
+    gsap.set(path, { drawSVG: "0% 0.1%", strokeWidth: baseW() });
+
+    var tl = gsap.timeline({
+      scrollTrigger: { trigger: ".story", start: "top 70%", endTrigger: ".team", end: "top 30%", scrub: 1, invalidateOnRefresh: true }
+    });
+    tl.to(path, { drawSVG: "0% 100%", ease: "none", duration: 1 })
+      .to(path, { strokeWidth: 2500, ease: "power2.in", duration: 0.32 }, 1)
+      .to(team, { backgroundColor: "rgba(255, 92, 0, 1)", color: "#ffffff", ease: "none", duration: 0.32 }, 1);
+
+    $$(".story-block").forEach(function (block) {
+      var label = $(".story-label", block), title = $(".story-title", block), text = $(".story-text", block), art = $(".story-art", block);
+      var tLines = SplitText.create(title, { type: "lines", mask: "lines", linesClass: "ln" }).lines;
+      var pLines = SplitText.create(text, { type: "lines", mask: "lines", linesClass: "ln" }).lines;
+      var rot = block.classList.contains("story-block--1") ? -14 : 14;
+      gsap.set(label, { opacity: 0, y: 10 });
+      gsap.set(tLines, { yPercent: 110 });
+      gsap.set(pLines, { yPercent: 110 });
+      gsap.set(art, { scale: 0.4, rotation: rot, opacity: 0 });
+      gsap.timeline({ scrollTrigger: { trigger: block, start: "top 72%", once: true } })
+        .to(label, { opacity: 1, y: 0, duration: 0.5 })
+        .to(tLines, { yPercent: 0, duration: 0.9, ease: "back.out(1.6)", stagger: 0.1 }, 0.1)
+        .to(pLines, { yPercent: 0, duration: 0.8, ease: "power3.out", stagger: 0.06 }, 0.35)
+        .to(art, { scale: 1, rotation: 0, opacity: 1, duration: 1, ease: "back.out(1.8)" }, 0.15);
+    });
+  }
+
+  /* Team cards pop up with a tilt once the section is in view */
+  function initTeam() {
+    var cards = $$(".member");
+    if (!cards.length) return;
+    gsap.set(cards, { y: 140, opacity: 0, rotation: function (i) { return [-6, 4, -3][i % 3]; } });
+    gsap.to(cards, {
+      y: 0, opacity: 1, rotation: 0, duration: 1.1, ease: "back.out(1.5)", stagger: 0.12,
+      scrollTrigger: { trigger: ".team-grid", start: "top 80%", once: true }
+    });
+    if (!canHover) return;
+    cards.forEach(function (c, i) {
+      var r = [-3, 2.5, -2][i % 3];
+      c.addEventListener("mouseenter", function () { gsap.to(c, { rotation: r, y: -10, duration: 0.5, ease: "back.out(2)" }); });
+      c.addEventListener("mouseleave", function () { gsap.to(c, { rotation: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.4)" }); });
+    });
+  }
+
+  /* House rules: CSS-sticky cards that stack; a bar fills as each card
+     arrives; titles bounce in letter by letter */
+  function initRules() {
+    var rules = $$(".rule");
+    if (!rules.length) return;
+    rules.forEach(function (r, i) { r.style.setProperty("--i", i); r.style.zIndex = String(i + 1); });
+    var last = rules[rules.length - 1];
+    if (!last.nextElementSibling || !last.nextElementSibling.classList.contains("rules-spacer")) {
+      var sp = document.createElement("div"); sp.className = "rules-spacer"; sp.setAttribute("aria-hidden", "true");
+      last.parentNode.insertBefore(sp, last.nextSibling);
+    }
+    function pinTop(i) {
+      var rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      return (isMobile() ? 4.5 + i * 3 : 5 + i * 5) * rem;
+    }
+    rules.forEach(function (r, i) {
+      var bar = $(".rule-bar i", r);
+      gsap.to(bar, {
+        scaleX: 1, ease: "none",
+        scrollTrigger: { trigger: r, start: i === 0 ? "top center" : "top bottom", end: function () { return "top " + pinTop(i) + "px"; }, scrub: true, invalidateOnRefresh: true }
+      });
+      var title = $(".rule-title", r), text = $(".rule-text", r), label = $(".rule-label", r);
+      var chars = SplitText.create(title, { type: "words,chars", charsClass: "ch", mask: "chars" }).chars;
+      var lines = SplitText.create(text, { type: "lines", mask: "lines", linesClass: "ln" }).lines;
+      gsap.set(chars, { yPercent: 110 });
+      gsap.set(lines, { yPercent: 110 });
+      gsap.set(label, { opacity: 0 });
+      gsap.timeline({ scrollTrigger: { trigger: r, start: "top 80%", once: true } })
+        .to(label, { opacity: 1, duration: 0.4 })
+        .to(chars, { yPercent: 0, duration: 0.8, ease: "back.out(1.7)", stagger: 0.015 }, 0.05)
+        .to(lines, { yPercent: 0, duration: 0.8, ease: "power3.out", stagger: 0.06 }, 0.3);
+    });
+  }
+
+  /* Capabilities: pills pop in; on hover a fat orange stroke draws
+     through the pill and the text turns white */
+  function initCaps() {
+    var pills = $$(".cap-list li");
+    if (!pills.length) return;
+    pills.forEach(function (li) {
+      var fill = document.createElement("span");
+      fill.className = "cap-fill";
+      fill.innerHTML = '<svg viewBox="0 0 100 40" preserveAspectRatio="none"><path vector-effect="non-scaling-stroke" d="M-10 30 C 20 0, 45 45, 70 12 S 100 20, 112 10" /></svg>';
+      li.insertBefore(fill, li.firstChild);
+      var path = $("path", fill);
+      gsap.set(path, { drawSVG: "0%", strokeWidth: 0 });
+      if (!canHover) return;
+      var hov = gsap.timeline({ paused: true })
+        .to(path, { drawSVG: "100%", strokeWidth: 200, duration: 0.55, ease: "power2.out" })
+        .to(li, { color: "#fdf8f5", duration: 0.25 }, 0.1);
+      li.addEventListener("mouseenter", function () { hov.timeScale(1).play(); });
+      li.addEventListener("mouseleave", function () { hov.timeScale(1.4).reverse(); });
+    });
+    gsap.from(pills, {
+      scale: 0, rotation: function () { return gsap.utils.random(-12, 12); }, duration: 0.7, ease: "back.out(2)", stagger: 0.025,
+      scrollTrigger: { trigger: ".cap-list", start: "top 85%", once: true }
+    });
+    gsap.from(".caps-cta .talk", { scale: 0, duration: 0.6, ease: "back.out(2.5)", scrollTrigger: { trigger: ".caps-cta", start: "top 95%", once: true } });
   }
 
   /* ---------- Helpers ---------- */
