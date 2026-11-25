@@ -2,24 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script>
-    // Show the loader only when JS runs and motion is allowed; never lock the page.
+    // Loader only when JS runs and motion is allowed; never lock the page.
     if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
       document.documentElement.classList.add("is-loading");
       setTimeout(function () { document.documentElement.classList.remove("is-loading"); }, 7000);
     }
   </script>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TELES ADS — Telegram Advertising & Digital Growth Agency</title>
+  <title>TELES ADS | Telegram Advertising &amp; Growth Agency</title>
   <meta name="description" content="TELES ADS is a Telegram advertising and digital growth agency. Targeted campaigns, community growth, Meta Ads, creative, Telegram bots and automation for online businesses worldwide." />
-  <meta property="og:title" content="TELES ADS — Your Gateway to Telegram Growth" />
+  <meta property="og:title" content="TELES ADS | Your Gateway to Telegram Growth" />
   <meta property="og:description" content="Research → Target → Launch → Measure → Scale. Telegram advertising, Meta Ads, bots and automation." />
   <meta property="og:url" content="https://telesads.com" />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#0c0c0d" />
+  <meta name="theme-color" content="#FF5C00" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -28,255 +28,366 @@
   <!-- ===================== LOADER ===================== -->
   <div class="loader" aria-hidden="true">
     <svg class="loader-wipe" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
-      <path class="wipe wipe-accent" d="M-200 120 C 300 -60, 700 380, 1000 220 S 1600 60, 1800 380 S 1000 900, 400 760 S -300 600, -200 1000" />
-      <path class="wipe wipe-ink" d="M-200 120 C 300 -60, 700 380, 1000 220 S 1600 60, 1800 380 S 1000 900, 400 760 S -300 600, -200 1000" />
+      <path class="wipe wipe-orange" d="M-300 -100 C 200 300, 500 -50, 800 300 S 1300 700, 1900 500" />
+      <path class="wipe wipe-pink" d="M1900 -100 C 1400 300, 1100 -50, 800 300 S 300 700, -300 500" />
     </svg>
     <div class="loader-logo">
-      <svg class="loader-ribbon" viewBox="0 0 600 120" preserveAspectRatio="none">
-        <path d="M10 90 C 120 20, 220 110, 320 60 S 520 20, 590 70" />
+      <svg class="loader-plane" viewBox="0 0 220 120" aria-hidden="true">
+        <path class="loader-trail" d="M10 100 C 40 40, 90 110, 110 70 S 90 20, 130 30 S 180 60, 200 30" />
       </svg>
-      <span class="loader-word">TELES</span><span class="loader-word loader-word--accent">ADS</span>
+      <div class="loader-word"><span>TELES</span> <span class="o">ADS</span></div>
     </div>
   </div>
 
   <!-- ===================== NAV ===================== -->
   <header class="nav">
-    <a href="#top" class="nav-logo" aria-label="TELES ADS home">
-      <span>TELES</span><span class="accent">ADS</span>
-    </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#services">Services</a>
-      <a href="#process">Process</a>
-      <a href="#sectors">Sectors</a>
-      <a href="#work">Work</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-    <button class="btn btn--accent magnetic cta-btn nav-cta" type="button">
-      <span class="btn-fill"></span><span class="btn-text">Start a campaign</span><span class="btn-arrow">↗</span>
-    </button>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
-      <span></span><span></span>
-    </button>
+    <div class="nav-left">
+      <a href="#services" class="nav-pill">Services</a>
+      <a href="#work" class="nav-pill">Work</a>
+    </div>
+    <a href="#top" class="nav-logo" aria-label="TELES ADS home">TELES ADS</a>
+    <div class="nav-right">
+      <p class="nav-meta">Telegram-first<br />India · UAE · Worldwide</p>
+      <button class="talk magnetic cta-btn" type="button">
+        <span class="talk-fill"></span>
+        <span class="talk-text">Let’s Talk</span>
+        <span class="talk-dot"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg></span>
+      </button>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="3" /><path class="m1" d="M7 9h10" /><path class="m2" d="M7 15h10" /></svg>
+      </button>
+    </div>
   </header>
 
   <div class="menu" id="menu" hidden>
     <nav class="menu-links" aria-label="Mobile">
       <a href="#services">Services</a>
-      <a href="#process">Process</a>
-      <a href="#sectors">Sectors</a>
       <a href="#work">Work</a>
+      <a href="#principles">How we think</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <button class="btn btn--accent cta-btn" type="button"><span class="btn-fill"></span><span class="btn-text">Start a campaign</span><span class="btn-arrow">↗</span></button>
+    <button class="talk cta-btn" type="button"><span class="talk-fill"></span><span class="talk-text">Let’s Talk</span><span class="talk-dot"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg></span></button>
   </div>
 
   <main id="main">
     <!-- ===================== HERO ===================== -->
     <section class="hero" id="top">
-      <p class="eyebrow hero-eyebrow">Telegram Advertising &amp; Digital Growth Agency</p>
-      <h1 class="hero-title">
-        <span class="hero-line">Built to</span>
-        <span class="hero-line">be <span class="hero-seen">seen.
-          <svg class="hero-scribble" viewBox="0 0 520 160" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M20 120 C 120 150, 300 150, 470 105 C 520 90, 500 60, 440 66 C 330 78, 180 110, 60 96" />
-          </svg>
-        </span></span>
+      <svg class="hero-swirl hero-swirl--l" viewBox="0 0 300 700" aria-hidden="true"><path d="M-60 40 C 160 120, 260 360, 150 470 C 60 560, -60 470, 20 380 C 110 280, 220 520, 120 640 C 80 690, 20 700, -60 690" /></svg>
+      <svg class="hero-swirl hero-swirl--r" viewBox="0 0 300 700" aria-hidden="true"><path d="M360 20 C 200 40, 80 180, 110 300 C 140 420, 300 420, 280 300 C 260 180, 120 220, 70 340 C 30 440, 150 560, 360 560" /></svg>
+
+      <h1 class="hero-title" aria-label="Built to be seen">
+        <span class="hero-line" aria-hidden="true">Built to</span>
+        <span class="hero-line hero-line--big" aria-hidden="true">be seen</span>
       </h1>
       <div class="hero-pills" aria-hidden="true">
-        <span class="pill pill--accent" style="--r:-6deg">Telegram Ads</span>
-        <span class="pill" style="--r:4deg">Meta &amp; Instagram</span>
-        <span class="pill pill--light" style="--r:-3deg">Bots &amp; Automation</span>
-        <span class="pill" style="--r:7deg">India · UAE · Worldwide</span>
+        <span class="pill pill--ink" style="--r:-9deg; left:26%; top:30%">Telegram-first</span>
+        <span class="pill pill--ink" style="--r:3deg; left:45%; top:7%">Growth agency</span>
+        <span class="pill pill--ink" style="--r:-6deg; left:64%; top:58%">No guesswork</span>
       </div>
-      <div class="hero-foot">
-        <p class="hero-sub">Your gateway to growth. We help trading, crypto, Web3, creator, SaaS and online-business communities reach the right audience and scale with strategic advertising and automation.</p>
-        <a href="#services" class="hero-scroll">Explore services <span>↓</span></a>
-      </div>
+
+      <svg class="hero-art" viewBox="0 0 1000 420" aria-hidden="true">
+        <!-- Megaphone -->
+        <g class="art art-mega">
+          <g transform="translate(110 170) rotate(-14)">
+            <path class="sl" d="M248 50 q34 50 0 100" /><path class="sl" d="M272 26 q52 74 0 148" /><path class="sl" d="M296 2 q70 98 0 196" />
+            <path d="M60 150 L68 232 L104 226 L97 160" fill="#fff" />
+            <path d="M0 62 L178 0 L178 200 L0 138 Z" fill="var(--orange)" />
+            <ellipse cx="178" cy="100" rx="30" ry="100" fill="#fff" />
+            <ellipse cx="178" cy="100" rx="14" ry="56" fill="var(--pink)" />
+            <rect x="-34" y="56" width="40" height="88" rx="12" fill="var(--ink)" />
+            <path d="M40 76 L140 44" class="hl" />
+          </g>
+        </g>
+        <!-- Phone with a Telegram-style chat -->
+        <g class="art art-phone">
+          <g transform="translate(400 22) rotate(-6)">
+            <rect width="204" height="384" rx="36" fill="var(--ink)" />
+            <rect x="12" y="14" width="180" height="356" rx="26" fill="#fff" />
+            <rect x="77" y="24" width="50" height="10" rx="5" fill="var(--ink)" />
+            <circle cx="48" cy="66" r="17" fill="var(--orange)" />
+            <path d="M40 66 L56 59 L52 74 L48 68 Z" fill="#fff" stroke="none" />
+            <rect x="74" y="56" width="86" height="9" rx="4.5" fill="var(--ink)" stroke="none" />
+            <rect x="74" y="71" width="52" height="7" rx="3.5" fill="#cfcfcf" stroke="none" />
+            <rect x="28" y="106" width="120" height="40" rx="15" fill="var(--pink)" />
+            <rect x="58" y="160" width="118" height="54" rx="15" fill="var(--orange)" />
+            <rect x="28" y="228" width="104" height="36" rx="15" fill="var(--pink)" />
+            <rect x="28" y="300" width="148" height="44" rx="22" fill="var(--ink)" />
+            <text stroke="none" x="102" y="329" text-anchor="middle" class="art-text">JOIN</text>
+          </g>
+          <g class="art-plus" transform="translate(642 86)">
+            <circle r="38" fill="var(--orange)" />
+            <text stroke="none" y="12" text-anchor="middle" class="art-text art-text--big">+1</text>
+          </g>
+        </g>
+        <!-- Paper plane with a dashed flight path -->
+        <path class="art-trail" d="M612 330 C 690 430, 790 380, 740 300 C 700 236, 780 196, 820 226" />
+        <g class="art art-plane">
+          <g transform="translate(770 60) rotate(-12)">
+            <path d="M0 122 L232 0 L152 212 L106 152 Z" fill="#fff" />
+            <path d="M106 152 L232 0 L82 137 Z" fill="var(--orange)" />
+            <path d="M106 152 L96 208 L132 178" fill="var(--orange)" />
+          </g>
+        </g>
+        <!-- Sparkles -->
+        <path class="spark" d="M330 40 l8 22 22 8 -22 8 -8 22 -8 -22 -22 -8 22 -8z" />
+        <path class="spark" d="M700 360 l6 16 16 6 -16 6 -6 16 -6 -16 -16 -6 16 -6z" />
+        <path class="spark" d="M950 300 l7 18 18 7 -18 7 -7 18 -7 -18 -18 -7 18 -7z" />
+      </svg>
     </section>
 
-    <!-- ===================== STATEMENT ===================== -->
-    <section class="statement" id="about">
-      <p class="label">/ 01 &nbsp; What we do</p>
-      <p class="statement-text">We don’t buy attention. We buy the <em>right</em> attention. Telegram is our core discipline, not a line item bolted onto a social media retainer.</p>
+    <!-- ===================== RIBBON MARQUEE ===================== -->
+    <section class="ribbon" aria-label="Automate, advertise, achieve">
+      <svg class="ribbon-svg" viewBox="0 0 1440 330" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <path id="ribbon-curve" d="M-43 292.8C179.6 174.3 464 116.5 712.7 90.6C934.6 67.6 1166.5 74.6 1436.9 105.1 L 5000 507" fill="none" />
+          <mask id="ribbon-mask" maskUnits="userSpaceOnUse">
+            <path class="ribbon-mask-path" d="M-43 292.8C179.6 174.3 464 116.5 712.7 90.6C934.6 67.6 1166.5 74.6 1436.9 105.1" stroke="#fff" stroke-width="220" stroke-linecap="round" fill="none" />
+          </mask>
+        </defs>
+        <path class="ribbon-bg" d="M-43 292.8C179.6 174.3 464 116.5 712.7 90.6C934.6 67.6 1166.5 74.6 1436.9 105.1" stroke="var(--orange)" stroke-width="154" stroke-linecap="round" fill="none" />
+        <g class="ribbon-text-group" mask="url(#ribbon-mask)">
+          <text class="ribbon-text" dominant-baseline="central">
+            <textPath href="#ribbon-curve" class="ribbon-tp" startOffset="0"><tspan class="ribbon-unit">AUTOMATE • ADVERTISE • ACHIEVE • </tspan>AUTOMATE • ADVERTISE • ACHIEVE • AUTOMATE • ADVERTISE • ACHIEVE • AUTOMATE • ADVERTISE • ACHIEVE • AUTOMATE • ADVERTISE • ACHIEVE •</textPath>
+          </text>
+        </g>
+      </svg>
     </section>
 
-    <!-- ===================== MARQUEE ===================== -->
-    <section class="marquee" aria-label="Disciplines">
-      <div class="marquee-track">
-        <div class="marquee-set">
-          <span>Telegram Ads</span><i>✦</i><span>Meta Ads</span><i>✦</i><span>Google Ads</span><i>✦</i><span>Creative</span><i>✦</i><span>Growth Consulting</span><i>✦</i><span>Telegram Bots</span><i>✦</i><span>Automation &amp; AI</span><i>✦</i>
+    <!-- ===================== ABOUT (pinned) ===================== -->
+    <section class="about" id="about">
+      <div class="about-pin">
+        <p class="kicker">A bit about us</p>
+        <div class="about-body">
+          <p class="about-text">We don’t buy attention. We buy the right attention. Telegram is our core discipline, so every campaign is researched before a cent is spent, measured at every step and reported honestly.</p>
+          <span class="pill pill--orange about-pill" style="--r:-8deg; left:58%; top:14%">Telegram nerds</span>
+          <span class="pill pill--orange about-pill" style="--r:6deg; left:2%; top:52%">Research first</span>
+          <span class="pill pill--orange about-pill" style="--r:-4deg; left:54%; top:76%">Allergic to guessing</span>
         </div>
-      </div>
-    </section>
-
-    <!-- ===================== SERVICES ===================== -->
-    <section class="services" id="services">
-      <div class="services-pin">
-        <p class="label label--dark">/ 02 &nbsp; Services</p>
-        <h2 class="services-title" aria-label="This is our craft">This is our craft</h2>
-        <div class="services-pills" aria-hidden="true">
-          <span class="pill pill--accent" style="--r:-8deg">7 disciplines</span>
-          <span class="pill pill--dark" style="--r:5deg">One roof</span>
-          <span class="pill pill--outline" style="--r:-4deg">Zero guesswork</span>
-        </div>
-      </div>
-
-      <ol class="service-list">
-        <li class="service">
-          <span class="service-key">A</span>
-          <h3>Telegram Advertising</h3>
-          <p>Our core specialization. Channel promotion and targeted audience acquisition built on real channel research, not spray-and-pray placements.</p>
-          <ul><li>Channel promotion</li><li>Audience acquisition</li><li>Channel discovery</li><li>Competitor research</li></ul>
-        </li>
-        <li class="service">
-          <span class="service-key">B</span>
-          <h3>Meta &amp; Instagram Ads</h3>
-          <p>Conversion-focused Facebook and Instagram campaigns with structured creative testing and ongoing optimization.</p>
-          <ul><li>Facebook &amp; Instagram Ads</li><li>Campaign management</li><li>Audience targeting</li><li>Retargeting</li></ul>
-        </li>
-        <li class="service">
-          <span class="service-key">C</span>
-          <h3>Google Advertising</h3>
-          <p>Search and traffic acquisition planned around the destination: landing page, offer and intent.</p>
-          <ul><li>Search campaigns</li><li>Traffic acquisition</li><li>Landing-page traffic</li></ul>
-        </li>
-        <li class="service">
-          <span class="service-key">D</span>
-          <h3>Creative Services</h3>
-          <p>Everything a campaign needs to actually run: copy, banners, video concepts and the page they land on.</p>
-          <ul><li>Ad copywriting</li><li>Banner ads</li><li>Video concepts</li><li>Social creatives</li></ul>
-        </li>
-        <li class="service">
-          <span class="service-key">E</span>
-          <h3>Telegram Growth Consulting</h3>
-          <p>Strategy for channels that are already running and need direction, diagnosis and a funnel that holds.</p>
-          <ul><li>Growth strategy</li><li>Audience analysis</li><li>Content recommendations</li><li>Funnel planning</li></ul>
-        </li>
-        <li class="service">
-          <span class="service-key">F</span>
-          <h3>Telegram Bot Development</h3>
-          <p>Custom bots and automation workflows that onboard, qualify and support your community around the clock.</p>
-          <ul><li>Custom bots</li><li>Support bots</li><li>Lead collection</li><li>Onboarding flows</li></ul>
-        </li>
-        <li class="service">
-          <span class="service-key">G</span>
-          <h3>Automation &amp; AI</h3>
-          <p>The operational layer: dashboards, automated reporting and assistants that remove manual campaign work.</p>
-          <ul><li>Workflow automation</li><li>AI assistants</li><li>Dashboards</li><li>Automated reports</li></ul>
-        </li>
-      </ol>
-    </section>
-
-    <!-- ===================== PROCESS ===================== -->
-    <section class="process" id="process">
-      <p class="label">/ 03 &nbsp; How we work</p>
-      <h2 class="section-title dual" data-split>Every campaign is measured.</h2>
-      <p class="process-intro">We instrument the full path, from impression to join, and report only what is verifiable. Where attribution breaks, we say so instead of filling the gap with a guess.</p>
-      <div class="process-steps">
-        <svg class="process-line" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 C 120 0, 220 40, 340 20 S 560 0, 680 20 S 880 40, 1000 20" /></svg>
-        <div class="step"><span class="step-n">01</span><h3>Research</h3><p>Channel discovery, audience and competitor research decide placement.</p></div>
-        <div class="step"><span class="step-n">02</span><h3>Target</h3><p>We pick the channels and audiences that actually match your offer.</p></div>
-        <div class="step"><span class="step-n">03</span><h3>Launch</h3><p>Copy, creative and landing pages go live, built for the platform.</p></div>
-        <div class="step"><span class="step-n">04</span><h3>Measure</h3><p>Impressions, reach, clicks, visits and joins, tracked at every stage.</p></div>
-        <div class="step"><span class="step-n">05</span><h3>Scale</h3><p>We double down on what works and cut what doesn’t, out loud.</p></div>
-      </div>
-    </section>
-
-    <!-- ===================== SECTORS ===================== -->
-    <section class="sectors" id="sectors">
-      <p class="label">/ 04 &nbsp; Sectors</p>
-      <h2 class="section-title dual" data-split>Niches most agencies decline.</h2>
-      <p class="sectors-intro">Trading, crypto and speculative communities are hard to advertise well and easy to advertise badly. We take them on, only where the offer is lawful and compliant with platform rules and local advertising policy.</p>
-      <div class="cards">
-        <article class="card" style="--c:#ff5c00"><span class="card-n">01</span><h3>Forex Trading</h3><p>Signal providers · Trading educators · Market analysts · Mentorship brands</p></article>
-        <article class="card" style="--c:#f5f5f3"><span class="card-n">02</span><h3>Crypto &amp; Web3</h3><p>Crypto communities · Token communities · Web3 projects · Blockchain products</p></article>
-        <article class="card" style="--c:#2aabee"><span class="card-n">03</span><h3>Trading Communities</h3><p>Education channels · Signal providers · Trading communities</p><small>Only where advertising and legal policies permit.</small></article>
-        <article class="card" style="--c:#3ddc84"><span class="card-n">04</span><h3>Arbitrage &amp; Finance</h3><p>Arbitrage education · Market analysis · Finance-focused audiences</p><small>No misleading financial claims.</small></article>
-        <article class="card" style="--c:#ffb800"><span class="card-n">05</span><h3>Meme Coin &amp; Speculative</h3><p>Community growth · Awareness campaigns · Audience acquisition</p><small>No guaranteed-profit language.</small></article>
-        <article class="card" style="--c:#b18cff"><span class="card-n">06</span><h3>SaaS &amp; Platforms</h3><p>Software products · AI tools · Subscription businesses · Digital services</p></article>
-        <article class="card" style="--c:#ff7aa8"><span class="card-n">07</span><h3>Creators &amp; Brands</h3><p>Influencers · Educators · Content creators · Community leaders</p></article>
-        <article class="card" style="--c:#f5f5f3"><span class="card-n">08</span><h3>E-commerce &amp; Digital</h3><p>Online stores · Digital products · Direct-response campaigns</p></article>
       </div>
     </section>
 
     <!-- ===================== WORK ===================== -->
     <section class="work" id="work">
-      <p class="label">/ 05 &nbsp; Work</p>
-      <h2 class="section-title dual" data-split>Built and shipped.</h2>
-      <p class="work-intro">Project references from our records. We publish only work we have completed and are approved to show.</p>
-      <ul class="work-list">
-        <li><a href="https://t.me/GGShot_Bot" target="_blank" rel="noopener"><span class="work-name">@GGShot_Bot</span><span class="work-type">Telegram bot &amp; automation</span><span class="work-arrow">↗</span></a></li>
-        <li><a href="https://t.me/tradingmentorsIgnaIs_bot" target="_blank" rel="noopener"><span class="work-name">@tradingmentorsIgnaIs_bot</span><span class="work-type">Telegram bot</span><span class="work-arrow">↗</span></a></li>
-        <li><a href="https://t.me/AIGPT5Trading_bot" target="_blank" rel="noopener"><span class="work-name">@AIGPT5Trading_bot</span><span class="work-type">Telegram bot</span><span class="work-arrow">↗</span></a></li>
-        <li><a href="https://t.me/quant_pocket_bot" target="_blank" rel="noopener"><span class="work-name">@quant_pocket_bot</span><span class="work-type">Telegram bot</span><span class="work-arrow">↗</span></a></li>
-      </ul>
-    </section>
+      <div class="sec-head">
+        <p class="kicker">Selected work</p>
+        <h2 class="sec-title dual" data-split>Built and<br />shipped</h2>
+      </div>
+      <div class="projects">
+        <a class="project" href="https://t.me/GGShot_Bot" target="_blank" rel="noopener" style="--bg:#DFF5E8; --c:#1E9E5A">
+          <div class="project-media">
+            <div class="chat">
+              <div class="chat-head"><span class="chat-ava">GG</span><span><b>GGShot Bot</b><small>bot</small></span></div>
+              <span class="bub bub--in" style="width:62%"></span>
+              <span class="bub bub--out" style="width:48%"></span>
+              <span class="bub bub--in" style="width:70%"></span>
+              <span class="chat-btn">START</span>
+            </div>
+            <svg class="project-brush" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
+              <defs><mask id="pm1" maskUnits="userSpaceOnUse"><path class="pm-path" d="M-20 20 C 120 80, 280 -20, 420 40 M420 40 C 260 120, 120 60, -20 150 M-20 150 C 140 210, 260 120, 420 200 M420 200 C 260 260, 120 230, -20 300" stroke="#fff" stroke-width="140" fill="none" stroke-linecap="round" /></mask></defs>
+              <g mask="url(#pm1)"><rect width="400" height="300" fill="var(--c)" /></g>
+              <path class="pf-path" d="M-20 20 C 120 80, 280 -20, 420 40 M420 40 C 260 120, 120 60, -20 150 M-20 150 C 140 210, 260 120, 420 200 M420 200 C 260 260, 120 230, -20 300" stroke="var(--ink)" stroke-width="10" fill="none" stroke-linecap="round" />
+            </svg>
+            <span class="project-hover">Open in Telegram ↗</span>
+          </div>
+          <div class="project-meta">
+            <span class="project-ico">GG</span>
+            <span class="project-name">@GGShot_Bot<small>Telegram bot &amp; automation</small></span>
+            <span class="project-arrow"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg></span>
+          </div>
+        </a>
+        <a class="project" href="https://t.me/tradingmentorsIgnaIs_bot" target="_blank" rel="noopener" style="--bg:#DCE8FF; --c:#1A54E4">
+          <div class="project-media">
+            <div class="chat">
+              <div class="chat-head"><span class="chat-ava">TM</span><span><b>Trading Mentors</b><small>bot</small></span></div>
+              <span class="bub bub--in" style="width:56%"></span>
+              <span class="bub bub--in" style="width:74%"></span>
+              <span class="bub bub--out" style="width:40%"></span>
+              <span class="chat-btn">START</span>
+            </div>
+            <svg class="project-brush" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
+              <defs><mask id="pm2" maskUnits="userSpaceOnUse"><path class="pm-path" d="M-20 20 C 120 80, 280 -20, 420 40 M420 40 C 260 120, 120 60, -20 150 M-20 150 C 140 210, 260 120, 420 200 M420 200 C 260 260, 120 230, -20 300" stroke="#fff" stroke-width="140" fill="none" stroke-linecap="round" /></mask></defs>
+              <g mask="url(#pm2)"><rect width="400" height="300" fill="var(--c)" /></g>
+              <path class="pf-path" d="M-20 20 C 120 80, 280 -20, 420 40 M420 40 C 260 120, 120 60, -20 150 M-20 150 C 140 210, 260 120, 420 200 M420 200 C 260 260, 120 230, -20 300" stroke="var(--ink)" stroke-width="10" fill="none" stroke-linecap="round" />
+            </svg>
+            <span class="project-hover">Open in Telegram ↗</span>
+          </div>
+          <div class="project-meta">
+            <span class="project-ico" style="background:#1A54E4">TM</span>
+            <span class="project-name">@tradingmentorsIgnaIs_bot<small>Telegram bot</small></span>
+            <span class="project-arrow"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg></span>
+          </div>
+        </a>
+        <a class="project" href="https://t.me/AIGPT5Trading_bot" target="_blank" rel="noopener" style="--bg:#FDE1FD; --c:#9B2FA8">
+          <div class="project-media">
+            <div class="chat">
+              <div class="chat-head"><span class="chat-ava">AI</span><span><b>AI GPT5 Trading</b><small>bot</small></span></div>
+              <span class="bub bub--out" style="width:44%"></span>
+              <span class="bub bub--in" style="width:72%"></span>
+              <span class="bub bub--in" style="width:52%"></span>
+              <span class="chat-btn">START</span>
+            </div>
+            <svg class="project-brush" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
+              <defs><mask id="pm3" maskUnits="userSpaceOnUse"><path class="pm-path" d="M-20 20 C 120 80, 280 -20, 420 40 M420 40 C 260 120, 120 60, -20 150 M-20 150 C 140 210, 260 120, 420 200 M420 200 C 260 260, 120 230, -20 300" stroke="#fff" stroke-width="140" fill="none" stroke-linecap="round" /></mask></defs>
+              <g mask="url(#pm3)"><rect width="400" height="300" fill="var(--c)" /></g>
+              <path class="pf-path" d="M-20 20 C 120 80, 280 -20, 420 40 M420 40 C 260 120, 120 60, -20 150 M-20 150 C 140 210, 260 120, 420 200 M420 200 C 260 260, 120 230, -20 300" stroke="var(--ink)" stroke-width="10" fill="none" stroke-linecap="round" />
+            </svg>
+            <span class="project-hover">Open in Telegram ↗</span>
+          </div>
+          <div class="project-meta">
+            <span class="project-ico" style="background:#9B2FA8">AI</span>
+            <span class="project-name">@AIGPT5Trading_bot<small>Telegram bot</small></span>
+            <span class="project-arrow"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg></span>
+          </div>
+        </a>
+        <a class="project" href="https://t.me/quant_pocket_bot" target="_blank" rel="noopener" style="--bg:#FFE9C7; --c:#E07B00">
+          <div class="project-media">
+            <div class="chat">
+              <div class="chat-head"><span class="chat-ava">QP</span><span><b>Quant Pocket</b><small>bot</small></span></div>
+              <span class="bub bub--in" style="width:66%"></span>
+              <span class="bub bub--out" style="width:52%"></span>
+              <span class="bub bub--in" style="width:46%"></span>
+              <span class="chat-btn">START</span>
+            </div>
+            <svg class="project-brush" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
+              <defs><mask id="pm4" maskUnits="userSpaceOnUse"><path class="pm-path" d="M-20 20 C 120 80, 280 -20, 420 40 M420 40 C 260 120, 120 60, -20 150 M-20 150 C 140 210, 260 120, 420 200 M420 200 C 260 260, 120 230, -20 300" stroke="#fff" stroke-width="140" fill="none" stroke-linecap="round" /></mask></defs>
+              <g mask="url(#pm4)"><rect width="400" height="300" fill="var(--c)" /></g>
+              <path class="pf-path" d="M-20 20 C 120 80, 280 -20, 420 40 M420 40 C 260 120, 120 60, -20 150 M-20 150 C 140 210, 260 120, 420 200 M420 200 C 260 260, 120 230, -20 300" stroke="var(--ink)" stroke-width="10" fill="none" stroke-linecap="round" />
+            </svg>
+            <span class="project-hover">Open in Telegram ↗</span>
+          </div>
+          <div class="project-meta">
+            <span class="project-ico" style="background:#E07B00">QP</span>
+            <span class="project-name">@quant_pocket_bot<small>Telegram bot</small></span>
+            <span class="project-arrow"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg></span>
+          </div>
+        </a>
+      </div>
 
-    <!-- ===================== PRINCIPLES ===================== -->
-    <section class="principles">
-      <p class="label">/ 06 &nbsp; How we think</p>
-      <div class="principle-grid">
-        <div class="principle"><h3>Specialists, not generalists</h3><p>Telegram is the core discipline. Everything else supports it.</p></div>
-        <div class="principle"><h3>Research before spend</h3><p>Nothing runs on a guess. Placement is decided by research.</p></div>
-        <div class="principle"><h3>Compliance is the filter</h3><p>We work in regulated niches, so we read the rules before we write the ad.</p></div>
-        <div class="principle"><h3>Honest measurement</h3><p>We report what is verifiable and name the attribution gaps out loud.</p></div>
+      <div class="projects-end">
+        <h3 class="projects-end-title">Want your project<br />on this list?</h3>
+        <span class="pill pill--ink pe-pill" style="--r:-6deg; left:10%; top:24%">Bots</span>
+        <span class="pill pill--ink pe-pill" style="--r:8deg; left:72%; top:20%">Campaigns</span>
+        <span class="pill pill--ink pe-pill" style="--r:-4deg; left:62%; top:50%">Automation</span>
+        <button class="talk talk--sm magnetic cta-btn" type="button"><span class="talk-fill"></span><span class="talk-text">Start a campaign</span><span class="talk-dot"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg></span></button>
       </div>
     </section>
 
-    <!-- ===================== FAQ ===================== -->
+    <!-- ===================== SERVICES (winding line) ===================== -->
+    <section class="services" id="services">
+      <div class="sec-head sec-head--services">
+        <p class="kicker">Our services</p>
+        <h2 class="sec-title dual" data-split>This is<br />what we do</h2>
+      </div>
+      <div class="services-stage">
+        <svg class="services-path" viewBox="0 0 1000 2400" preserveAspectRatio="none" aria-hidden="true">
+          <path class="sp-light" d="" />
+          <path class="sp-dark" d="" />
+        </svg>
+        <ol class="service-list">
+          <li class="service"><div class="service-block"><span class="sw">Telegram</span><span class="service-svg"><svg viewBox="0 0 64 64"><rect x="4" y="8" width="56" height="48" rx="12" fill="var(--pink)"/><path d="M12 34 L52 16 L42 50 L32 40 Z" fill="var(--orange)"/><path d="M32 40 L52 16 L26 37 Z" fill="#fff"/></svg></span><span class="sw">Ads</span></div><p class="service-para">Channel promotion and targeted audience acquisition built on real channel research.</p></li>
+          <li class="service"><div class="service-block"><span class="sw">Meta</span><span class="service-svg"><svg viewBox="0 0 64 64"><rect x="6" y="6" width="52" height="52" rx="16" fill="var(--orange)"/><circle cx="32" cy="32" r="11" fill="#fff"/><circle cx="46" cy="18" r="4" fill="#fff"/></svg></span><span class="sw">Ads</span></div><p class="service-para">Conversion-focused Facebook and Instagram campaigns with structured creative testing.</p></li>
+          <li class="service"><div class="service-block"><span class="sw">Google</span><span class="service-svg"><svg viewBox="0 0 64 64"><circle cx="27" cy="27" r="18" fill="#fff"/><circle cx="27" cy="27" r="9" fill="var(--orange)"/><path d="M40 40 L56 56" stroke-width="7"/></svg></span><span class="sw">Ads</span></div><p class="service-para">Search and traffic acquisition planned around your landing page, offer and intent.</p></li>
+          <li class="service"><div class="service-block"><span class="sw">Creative</span><span class="service-svg"><svg viewBox="0 0 64 64"><rect x="6" y="10" width="52" height="40" rx="6" fill="#fff"/><circle cx="22" cy="24" r="6" fill="var(--orange)"/><path d="M6 44 L24 32 L36 40 L46 30 L58 40 L58 50 L6 50 Z" fill="var(--orange)"/></svg></span><span class="sw">Studio</span></div><p class="service-para">Copy, banners, video concepts and the pages they land on.</p></li>
+          <li class="service"><div class="service-block"><span class="sw">Growth</span><span class="service-svg"><svg viewBox="0 0 64 64"><rect x="6" y="6" width="52" height="52" rx="10" fill="#fff"/><path d="M14 46 L26 32 L36 38 L50 18" fill="none" stroke-width="5"/><path d="M42 18 H50 V26" fill="none" stroke-width="5"/><rect x="12" y="48" width="40" height="4" fill="var(--orange)" stroke="none"/></svg></span><span class="sw">Consulting</span></div><p class="service-para">Direction, diagnosis and a community funnel that actually holds.</p></li>
+          <li class="service"><div class="service-block"><span class="sw">Telegram</span><span class="service-svg"><svg viewBox="0 0 64 64"><rect x="10" y="18" width="44" height="34" rx="10" fill="var(--orange)"/><circle cx="24" cy="34" r="5" fill="#fff"/><circle cx="40" cy="34" r="5" fill="#fff"/><path d="M32 18 V8" stroke-width="4"/><circle cx="32" cy="7" r="4" fill="#fff"/></svg></span><span class="sw">Bots</span></div><p class="service-para">Custom bots that onboard, qualify and support your community around the clock.</p></li>
+          <li class="service"><div class="service-block"><span class="sw">Automation</span><span class="service-svg"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22" fill="#fff"/><circle cx="32" cy="32" r="9" fill="var(--orange)"/><path d="M32 4 V14 M32 50 V60 M4 32 H14 M50 32 H60" stroke-width="6"/></svg></span><span class="sw">&amp; AI</span></div><p class="service-para">Dashboards, automated reports and assistants that remove manual campaign work.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== PRINCIPLES (card deck) ===================== -->
+    <section class="principles" id="principles">
+      <div class="sec-head sec-head--center">
+        <p class="kicker">How we think</p>
+        <h2 class="sec-title dual" data-split>Four rules,<br />no exceptions</h2>
+      </div>
+      <div class="deck-panel">
+        <button class="deck-next" type="button" aria-label="Next card"><svg viewBox="0 0 16 16"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5" /></svg></button>
+        <div class="deck" aria-live="polite">
+          <article class="deck-card"><span class="deck-n">01</span><h3>Specialists, not generalists</h3><p>Telegram is the core discipline, not a line item bolted onto a social media retainer. Everything else we do supports it.</p></article>
+          <article class="deck-card"><span class="deck-n">02</span><h3>Research before spend</h3><p>Channel discovery, audience and competitor research decide placement. Nothing runs on a guess.</p></article>
+          <article class="deck-card"><span class="deck-n">03</span><h3>Compliance is the filter</h3><p>We work in regulated niches, which means we read the rules before we write the ad.</p></article>
+          <article class="deck-card"><span class="deck-n">04</span><h3>Honest measurement</h3><p>We report what is verifiable and name the attribution gaps out loud, instead of filling them with a guess.</p></article>
+        </div>
+        <div class="deck-ticks" role="tablist" aria-label="Choose card"></div>
+      </div>
+    </section>
+
+    <!-- ===================== FAQ (chat bubbles) ===================== -->
     <section class="faq" id="faq">
-      <p class="label">/ 07 &nbsp; FAQ</p>
-      <h2 class="section-title dual" data-split>Things you might ask.</h2>
-      <div class="faq-list">
-        <details><summary>Which platforms do you advertise on?</summary><p>Telegram is our core. We also run Meta (Facebook and Instagram) and Google campaigns, and handle the creative and landing pages they need.</p></details>
-        <details><summary>Do you guarantee results?</summary><p>No. Results depend on niche, offer, creative, audience, budget and platform conditions. We don’t guarantee financial returns, member counts or conversions, and we don’t give investment advice. We do promise honest, verifiable reporting.</p></details>
-        <details><summary>Do you work with trading and crypto projects?</summary><p>Yes, that’s a big part of what we do, but only where the offer is lawful and compliant with platform rules and local advertising policy. No misleading claims, no guaranteed-profit language.</p></details>
-        <details><summary>Where are you based?</summary><p>We have representation in India and the UAE, and we work with clients worldwide. Telegram is borderless, so we plan campaigns around where your audience is.</p></details>
-        <details><summary>Can you build a Telegram bot for us?</summary><p>Yes. We build custom bots for onboarding, lead collection, qualification and support, plus the automation and reporting around them.</p></details>
-        <details><summary>How do we start?</summary><p>Send us a brief on Telegram: what you’re growing, who it’s for and your budget range. We’ll come back with a plan.</p></details>
+      <div class="faq-left">
+        <p class="kicker">Frequently asked questions</p>
+        <h2 class="sec-title dual" data-split>Questions<br />we get a lot</h2>
+        <svg class="faq-art" viewBox="0 0 420 300" aria-hidden="true">
+          <g class="faq-bot">
+            <path d="M210 70 V40" /><circle cx="210" cy="32" r="10" fill="var(--orange)" />
+            <rect x="110" y="70" width="200" height="150" rx="40" fill="#fff" />
+            <rect x="140" y="105" width="140" height="70" rx="26" fill="var(--ink)" />
+            <circle class="eye" cx="180" cy="140" r="12" fill="var(--orange)" stroke="none" />
+            <circle class="eye" cx="240" cy="140" r="12" fill="var(--orange)" stroke="none" />
+            <path d="M190 196 q20 14 40 0" fill="none" />
+            <rect x="140" y="220" width="140" height="60" rx="18" fill="var(--orange)" />
+          </g>
+          <g class="faq-q q1"><circle cx="70" cy="80" r="36" fill="var(--orange)" /><text stroke="none" x="70" y="96" text-anchor="middle" class="art-text art-text--q">?</text></g>
+          <g class="faq-q q2"><circle cx="356" cy="60" r="28" fill="#fff" /><text stroke="none" x="356" y="73" text-anchor="middle" class="art-text art-text--q2">?</text></g>
+        </svg>
       </div>
-    </section>
-
-    <!-- ===================== CTA ===================== -->
-    <section class="cta">
-      <h2 class="cta-title" data-split>Tell us what you’re growing.</h2>
-      <button class="btn btn--big btn--accent magnetic cta-btn" type="button"><span class="btn-fill"></span><span class="btn-text">Send a brief</span><span class="btn-arrow">↗</span></button>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q-btn" type="button">Which platforms do you advertise on?</button><div class="faq-a"><p>Telegram is our core. We also run Meta (Facebook and Instagram) and Google campaigns, and handle the creative and landing pages they need.</p><span class="faq-logo">TA</span></div></div>
+        <div class="faq-item"><button class="faq-q-btn" type="button">Do you guarantee results?</button><div class="faq-a"><p>No. Results depend on niche, offer, creative, audience, budget and platform conditions. We don’t guarantee returns, member counts or conversions, and we don’t give investment advice. We do promise honest, verifiable reporting.</p><span class="faq-logo">TA</span></div></div>
+        <div class="faq-item"><button class="faq-q-btn" type="button">Do you work with trading and crypto projects?</button><div class="faq-a"><p>Yes, it’s a big part of what we do, but only where the offer is lawful and compliant with platform rules and local advertising policy. No misleading claims, no guaranteed-profit language.</p><span class="faq-logo">TA</span></div></div>
+        <div class="faq-item"><button class="faq-q-btn" type="button">Where are you based?</button><div class="faq-a"><p>We have representation in India and the UAE and work with clients worldwide. Telegram is borderless, so we plan campaigns around where your audience is.</p><span class="faq-logo">TA</span></div></div>
+        <div class="faq-item"><button class="faq-q-btn" type="button">Can you build a Telegram bot for us?</button><div class="faq-a"><p>Yes. We build custom bots for onboarding, lead collection, qualification and support, plus the automation and reporting around them.</p><span class="faq-logo">TA</span></div></div>
+        <div class="faq-item"><button class="faq-q-btn" type="button">Which niches do you cover?</button><div class="faq-a"><p>Forex, crypto and Web3, trading communities, arbitrage and finance, SaaS, creators and e-commerce. Regulated categories run only where lawful.</p><span class="faq-logo">TA</span></div></div>
+        <div class="faq-item"><button class="faq-q-btn" type="button">How do we start?</button><div class="faq-a"><p>Send us a brief on Telegram: what you’re growing, who it’s for and your budget range. We’ll come back with a plan.</p><span class="faq-logo">TA</span></div></div>
+      </div>
     </section>
   </main>
 
   <!-- ===================== FOOTER ===================== -->
   <footer class="footer">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <p class="footer-logo">TELES<span class="accent">ADS</span></p>
-        <p class="footer-tag">Automate · Advertise · Achieve</p>
+    <svg class="footer-pattern" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path d="M-100 120 C 200 -40, 300 260, 160 300 C 40 330, 60 160, 220 180 C 420 200, 380 420, 560 380 C 740 340, 600 120, 760 90 C 900 60, 980 260, 860 300 C 760 330, 760 180, 920 170 C 1100 160, 1080 420, 1260 380 C 1400 350, 1380 160, 1540 200" />
+      <path d="M-100 620 C 120 480, 260 760, 120 780 C 0 800, 20 620, 200 640 C 400 660, 420 860, 620 820 C 800 780, 700 560, 860 540 C 1000 520, 1060 700, 940 740 C 840 770, 860 600, 1020 590 C 1200 580, 1220 800, 1540 700" />
+      <path d="M300 520 C 380 420, 520 460, 470 540 C 430 600, 350 560, 400 500 C 460 430, 640 470, 700 420" />
+    </svg>
+    <div class="footer-grid">
+      <div class="footer-a">
+        <h2 class="footer-title" data-split>That’s the<br />whole pitch</h2>
+        <button class="talk talk--sm magnetic cta-btn" type="button"><span class="talk-fill"></span><span class="talk-text">Let’s Talk</span><span class="talk-dot"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg></span></button>
+        <p class="f-dim">Email us</p>
+        <a class="f-link" href="mailto:work@telesads.com">work@telesads.com</a>
       </div>
-      <div class="footer-cols">
-        <div><p class="footer-h">Connect</p>
-          <a href="https://t.me/TelesAds" target="_blank" rel="noopener">Telegram channel</a>
-          <a href="https://t.me/TeIeAd" target="_blank" rel="noopener">Direct contact</a>
-          <a href="https://t.me/TelesAgentBot" target="_blank" rel="noopener">TELES Agent bot</a>
-          <a href="https://t.me/Teles_Feedback" target="_blank" rel="noopener">Feedback</a>
-          <a href="mailto:work@telesads.com">work@telesads.com</a>
-        </div>
-        <div><p class="footer-h">Index</p>
-          <a href="#services">Services</a><a href="#process">Process</a><a href="#sectors">Sectors</a><a href="#work">Work</a><a href="#faq">FAQ</a>
-        </div>
+      <div class="footer-b">
+        <p class="f-dim">Main menu</p>
+        <a class="f-link" href="#services">Services</a>
+        <a class="f-link" href="#work">Work</a>
+        <a class="f-link" href="#faq">FAQ</a>
       </div>
+      <div class="footer-c">
+        <a class="f-link" href="https://t.me/TeIeAd" target="_blank" rel="noopener">Telegram ↗</a>
+        <a class="f-link" href="https://t.me/TelesAds" target="_blank" rel="noopener">Channel ↗</a>
+        <a class="f-link" href="https://t.me/TelesAgentBot" target="_blank" rel="noopener">Agent bot ↗</a>
+      </div>
+      <p class="footer-d">Automate. Advertise.<br />Achieve.</p>
+      <p class="footer-e">India · UAE<br />Worldwide</p>
     </div>
-    <p class="footer-legal">Advertising results depend on niche, offer, creative, audience, budget and platform conditions. TELES ADS does not guarantee financial returns, member counts or conversions, and does not provide investment advice. Campaigns in regulated categories run only where lawful and compliant with platform rules and local advertising policy.</p>
-    <div class="footer-bottom"><span>© <span data-year>2026</span> TELES ADS</span><span>India &amp; UAE · International clients</span></div>
+    <p class="footer-legal">Advertising results depend on niche, offer, creative, audience, budget and platform conditions. TELES ADS does not guarantee financial returns, member counts or conversions, and does not provide investment advice. Regulated categories run only where lawful and compliant with platform rules.</p>
+    <p class="footer-copy">© <span data-year>2026</span> TELES ADS</p>
+    <div class="footer-mark-wrap" aria-hidden="true">
+      <svg class="footer-mark" viewBox="0 0 1400 250" preserveAspectRatio="none"><text x="0" y="232" textLength="1400" lengthAdjust="spacingAndGlyphs">TELES ADS</text></svg>
+    </div>
   </footer>
 
-  <!-- ===================== CONTACT MODAL ===================== -->
+  <!-- ===================== CONTACT OVERLAY ===================== -->
   <div class="contact" role="dialog" aria-modal="true" aria-labelledby="contact-title" hidden>
     <svg class="contact-wipe" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <path d="M-200 450 C 200 100, 600 800, 900 400 S 1500 100, 1800 500" />
+      <path d="M-300 450 C 200 0, 600 900, 900 400 S 1500 0, 1900 500" />
     </svg>
     <div class="contact-inner">
-      <button class="contact-close" type="button" aria-label="Close">Close <span>✕</span></button>
+      <div class="contact-top"><span class="contact-logo">TELES ADS</span><button class="contact-close" type="button"><span>Close</span> ✕</button></div>
       <div class="contact-left">
-        <h2 id="contact-title" class="contact-title">Let’s grow<br />something.</h2>
+        <h2 id="contact-title" class="contact-title">Let’s grow<br />something</h2>
         <p class="contact-copy">The fastest way to reach us is Telegram. Tell us what you’re growing, who it’s for and your budget range.</p>
       </div>
       <div class="contact-right">
@@ -285,11 +396,12 @@
         <p class="contact-h">Email</p>
         <a class="contact-link" href="mailto:work@telesads.com">work@telesads.com</a>
         <div class="contact-pills">
-          <a class="pill pill--accent" href="https://t.me/TelesAds" target="_blank" rel="noopener">Channel</a>
-          <a class="pill pill--light" href="https://t.me/TelesAgentBot" target="_blank" rel="noopener">TELES Agent</a>
-          <a class="pill" href="https://t.me/Teles_Feedback" target="_blank" rel="noopener">Feedback</a>
+          <a class="pill pill--ink" href="https://t.me/TelesAds" target="_blank" rel="noopener">Channel</a>
+          <a class="pill pill--white" href="https://t.me/TelesAgentBot" target="_blank" rel="noopener">TELES Agent</a>
+          <a class="pill pill--ink" href="https://t.me/Teles_Feedback" target="_blank" rel="noopener">Feedback</a>
         </div>
       </div>
+      <svg class="contact-art" viewBox="0 0 300 200" aria-hidden="true"><g transform="translate(40 20) rotate(-12)"><path d="M0 110 L210 0 L138 192 L96 138 Z" fill="#fff" /><path d="M96 138 L210 0 L74 124 Z" fill="var(--ink)" /><path d="M96 138 L87 188 L120 161" fill="var(--ink)" /></g></svg>
     </div>
   </div>
 
