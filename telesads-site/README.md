@@ -22,3 +22,13 @@ To preview, open `index.html` in a browser or run `npx serve telesads-site`.
 To deploy, upload the folder to any static host.
 
 The page stays usable without JavaScript, if the CDN fails, and with reduced motion turned on.
+
+## Deploy
+
+**GitHub Pages:** push this folder to the `main` branch of a new repository, then open **Settings → Pages** and set **Source** to **GitHub Actions**. The workflow in `.github/workflows/deploy.yml` publishes the site on every push.
+
+**Netlify:** drag this folder onto https://app.netlify.com/drop.
+
+**Vercel or Cloudflare Pages:** import the repository with no build command, and set the output directory to the repository root.
+
+**Custom domain (telesads.com):** add the domain in your host's settings, then point your DNS at the host as it instructs.
