@@ -86,6 +86,7 @@
     } else {
       initStory();
       initTeam();
+      initTeamPopup();
       initRules();
       initCaps();
     }
@@ -93,6 +94,7 @@
     initFooter();
     initKineticLinks();
     initMagnetic();
+    initNavPills();
     initMenu(true);
     initContact(true);
     initAnchors();
@@ -294,22 +296,31 @@
       gsap.set(media, { scale: 1.45, rotationX: 18, rotationY: -12, transformPerspective: 1200 });
       gsap.set($(".project-meta", card), { opacity: 0, y: 20 });
 
-      var pf = $(".pf-path", card), panel = $(".project-panel", card), label = $(".project-hover", card), arrow = $(".project-arrow", card);
-      gsap.set(pf, { drawSVG: "0%", opacity: 0 });
-      gsap.set(label, { y: 20 });
-      var hover = gsap.timeline({ paused: true });
-      hover.set(pf, { opacity: 1 })
-        .to(pf, { drawSVG: "100%", duration: 0.5, ease: "power2.in" })
-        .fromTo(panel, { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.55, ease: "power3.out" }, 0.3)
-        .to(pf, { opacity: 0, duration: 0.2 }, 0.7)
-        .to(label, { opacity: 1, y: 0, duration: 0.3 }, 0.65);
-      if (canHover) {
-        card.addEventListener("mouseenter", function () {
-          hover.timeScale(1).play();
-          gsap.fromTo(arrow, { rotation: 0 }, { rotation: -45, duration: 0.25, ease: "power2.out", onComplete: function () { gsap.to(arrow, { rotation: 0, duration: 0.9, ease: "elastic.out(1.2, 0.3)" }); } });
-        });
-        card.addEventListener("mouseleave", function () { hover.timeScale(2).reverse(); });
-      }
+      var arrow = $(".project-arrow svg", card) || $(".project-arrow", card);
+      var hoverSrc = media.getAttribute("data-hover");
+      if (!canHover || !hoverSrc) return;
+      var BRUSH = "M80 990 C 260 1080, 640 900, 420 760 C 160 600, 40 820, 120 560 C 200 300, 660 520, 620 280 C 590 100, 160 220, 200 25";
+      var idx = cards.indexOf(card);
+      var fg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      fg.setAttribute("class", "project-fg"); fg.setAttribute("viewBox", "0 0 709 1012"); fg.setAttribute("preserveAspectRatio", "xMidYMid slice"); fg.setAttribute("aria-hidden", "true");
+      fg.innerHTML = '<path d="' + BRUSH + '" />';
+      var mk = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      mk.setAttribute("class", "project-reveal"); mk.setAttribute("viewBox", "0 0 709 1012"); mk.setAttribute("preserveAspectRatio", "xMidYMid slice"); mk.setAttribute("aria-hidden", "true");
+      mk.innerHTML = '<defs><mask id="pmask-' + idx + '" maskUnits="userSpaceOnUse" x="-300" y="-300" width="1309" height="1612">' +
+        '<path d="' + BRUSH + '" stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round" /></mask></defs>' +
+        '<image href="' + hoverSrc + '" x="0" y="0" width="709" height="1012" preserveAspectRatio="xMidYMid slice" mask="url(#pmask-' + idx + ')" />';
+      media.appendChild(fg);
+      media.appendChild(mk);
+      var fgPath = $("path", fg), mkPath = $("mask path", mk);
+      gsap.set([fgPath, mkPath], { drawSVG: "100% 100%", strokeWidth: 0 });
+      if (arrow) gsap.set(arrow, { transformOrigin: "50% 50%" });
+      var hover = gsap.timeline({ paused: true, defaults: { ease: "power1.inOut" } })
+        .to(fgPath, { drawSVG: "0% 100%", strokeWidth: 1200, duration: 0.95 }, 0)
+        .to(mkPath, { drawSVG: "0% 100%", strokeWidth: 1200, duration: 1.05 }, 0.35)
+        .to(arrow, { rotation: -45, duration: 0.28, ease: "power2.out" }, 0)
+        .to(arrow, { rotation: 0, duration: 0.65, ease: "elastic.out(1.15, 0.35)" }, 0.28);
+      card.addEventListener("mouseenter", function () { hover.timeScale(1).play(); });
+      card.addEventListener("mouseleave", function () { hover.timeScale(1.3).reverse(); });
     });
     ScrollTrigger.batch(".project-mask", {
       start: "top 90%", once: true,
@@ -454,7 +465,32 @@
     }
 
     layout(true);
-    panel.addEventListener("click", function (e) { if (!e.target.closest("a")) next(); });
+    var cursor = $(".deck-cursor", panel), cursorDir = 0;
+    panel.addEventListener("click", function (e) {
+      if (e.target.closest("a, .deck-ticks")) return;
+      if (cursor && canHover) {
+        var rr = panel.getBoundingClientRect();
+        (e.clientY - rr.top < rr.height / 2) ? next() : prev();
+      } else next();
+    });
+    if (cursor && canHover && anim) {
+      panel.classList.add("has-cursor");
+      gsap.set(cursor, { xPercent: -50, yPercent: -50, scale: 0, opacity: 0 });
+      var cx = gsap.quickTo(cursor, "x", { duration: 0.15, ease: "power2.out" });
+      var cy = gsap.quickTo(cursor, "y", { duration: 0.15, ease: "power2.out" });
+      panel.addEventListener("mouseenter", function (e) {
+        var rr = panel.getBoundingClientRect(), mx = e.clientX - rr.left, my = e.clientY - rr.top;
+        gsap.set(cursor, { x: mx, y: my, rotation: (cursorDir = my < rr.height / 2 ? 0 : 180) });
+        gsap.to(cursor, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2)", overwrite: "auto" });
+      });
+      panel.addEventListener("mousemove", function (e) {
+        var rr = panel.getBoundingClientRect(), mx = e.clientX - rr.left, my = e.clientY - rr.top;
+        cx(mx); cy(my);
+        var target = my < rr.height / 2 ? 0 : 180;
+        if (target !== cursorDir) { cursorDir = target; gsap.to(cursor, { rotation: target, duration: 0.25, ease: "power2.out" }); }
+      });
+      panel.addEventListener("mouseleave", function () { gsap.to(cursor, { scale: 0, opacity: 0, duration: 0.2, ease: "power2.in", overwrite: "auto" }); });
+    }
     $(".deck-next").addEventListener("click", function (e) { e.stopPropagation(); next(); });
     panel.addEventListener("keydown", function (e) {
       if (e.key === "ArrowDown" || e.key === "ArrowRight") { e.preventDefault(); next(); }
@@ -582,32 +618,56 @@
      ========================================================= */
   function initMagnetic() {
     if (!canHover) return;
-    $$(".magnetic").forEach(function (btn) {
-      var fill = $(".talk-fill", btn), dot = $(".talk-dot svg", btn), text = $(".talk-text", btn);
-      var bx = gsap.quickTo(btn, "x", { duration: 0.5, ease: "power3" }), by = gsap.quickTo(btn, "y", { duration: 0.5, ease: "power3" });
-      var tx = gsap.quickTo(text, "x", { duration: 0.5, ease: "power3" }), ty = gsap.quickTo(text, "y", { duration: 0.5, ease: "power3" });
-      var rect = null, loop = null;
+    $$(".talk").forEach(function (btn) {
+      var fill = $(".talk-fill", btn), arrow = $(".talk-dot svg", btn), text = $(".talk-text", btn);
+      var inner = [text, arrow].filter(Boolean);
+      var arrowLoop = null;
+      if (arrow) gsap.set(arrow, { transformOrigin: "50% 50%" });
       btn.addEventListener("mouseenter", function () {
-        rect = btn.getBoundingClientRect();
-        gsap.to(fill, { scale: (rect.width / fill.offsetWidth) * 2.4, duration: 0.55, ease: "power3.out" });
-        loop = gsap.timeline({ repeat: -1, repeatDelay: 0.3 })
-          .to(dot, { rotation: 45, duration: 0.35, ease: "back.out(3)" })
-          .to(dot, { rotation: 0, duration: 0.5, ease: "elastic.out(1, 0.4)" }, "+=0.2");
+        gsap.to(fill, { scale: 10, duration: 0.55, ease: "power2.out", overwrite: "auto" });
+        if (arrowLoop) arrowLoop.kill();
+        arrowLoop = gsap.timeline({ repeat: -1, repeatDelay: 0.2 })
+          .to(arrow, { rotation: -25, duration: 0.22, ease: "power2.out" })
+          .to(arrow, { rotation: 0, duration: 0.4, ease: "back.out(2.5)" });
       });
       btn.addEventListener("mousemove", function (e) {
-        if (!rect) rect = btn.getBoundingClientRect();
-        var cx = rect.left + rect.width / 2 - (gsap.getProperty(btn, "x") || 0);
-        var cy = rect.top + rect.height / 2 - (gsap.getProperty(btn, "y") || 0);
+        var r = btn.getBoundingClientRect();
+        var cx = r.left - (gsap.getProperty(btn, "x") || 0) + r.width / 2;
+        var cy = r.top - (gsap.getProperty(btn, "y") || 0) + r.height / 2;
         var dx = e.clientX - cx, dy = e.clientY - cy;
-        bx(dx * 0.3); by(dy * 0.45); tx(dx * 0.1); ty(dy * 0.1);
+        gsap.to(btn, { x: dx * 0.35, y: dy * 0.35, duration: 0.3, ease: "power2.out", overwrite: "auto" });
+        gsap.to(inner, { x: dx * 0.15, y: dy * 0.15, duration: 0.3, ease: "power2.out", overwrite: "auto" });
       });
       btn.addEventListener("mouseleave", function () {
-        rect = null;
-        if (loop) { loop.kill(); loop = null; }
-        gsap.to(dot, { rotation: 0, duration: 0.4 });
-        gsap.to([btn, text], { x: 0, y: 0, duration: 1, ease: "elastic.out(1, 0.35)", overwrite: "auto" });
-        gsap.to(fill, { scale: 0, duration: 0.45, ease: "power3.inOut" });
+        if (arrowLoop) { arrowLoop.kill(); arrowLoop = null; }
+        gsap.to(arrow, { rotation: 0, duration: 0.35, ease: "power2.out", overwrite: "auto" });
+        gsap.to(btn, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1.1, 0.4)", overwrite: "auto" });
+        gsap.to(inner, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1.1, 0.4)", overwrite: "auto" });
+        gsap.to(fill, { scale: 1, duration: 0.45, ease: "power2.out", overwrite: "auto" });
       });
+    });
+  }
+
+  /* Nav pills: a scribble stroke draws through the pill and thickens to fill it */
+  function initNavPills() {
+    if (!canHover) return;
+    $$(".nav-pill").forEach(function (btn) {
+      if ($(".stroke-fill", btn)) return;
+      var label = document.createElement("span");
+      label.className = "nav-pill-text";
+      while (btn.firstChild) label.appendChild(btn.firstChild);
+      var fill = document.createElement("span");
+      fill.className = "stroke-fill";
+      fill.setAttribute("aria-hidden", "true");
+      fill.innerHTML = '<svg viewBox="0 0 75 36" preserveAspectRatio="none"><path d="M-2 22 C 4 6, 12 2, 16 10 C 20 18, 8 28, 16 32 C 26 36, 30 -2, 40 4 C 50 10, 34 28, 42 33 C 52 38, 58 0, 66 6 C 72 11, 62 28, 70 30 C 74 31, 78 22, 78 22" /></svg>';
+      btn.appendChild(fill);
+      btn.appendChild(label);
+      var path = $("path", fill);
+      gsap.set(path, { drawSVG: "0%", strokeWidth: 0 });
+      var tl = gsap.timeline({ paused: true, defaults: { ease: "power1.inOut" } })
+        .to(path, { drawSVG: "100%", strokeWidth: 36, duration: 0.5 });
+      btn.addEventListener("mouseenter", function () { tl.timeScale(1).play(); });
+      btn.addEventListener("mouseleave", function () { tl.timeScale(1.4).reverse(); });
     });
   }
 
@@ -852,6 +912,73 @@
       c.addEventListener("mouseenter", function () { gsap.to(c, { rotation: r, y: -10, duration: 0.5, ease: "back.out(2)" }); });
       c.addEventListener("mouseleave", function () { gsap.to(c, { rotation: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.4)" }); });
     });
+  }
+
+
+  /* Team popup: the card grows out of the clicked team card (FLIP), content staggers in */
+  function initTeamPopup() {
+    var cards = $$(".member");
+    if (!cards.length) return;
+    var overlay = document.createElement("div");
+    overlay.className = "team-pop";
+    overlay.hidden = true;
+    overlay.innerHTML =
+      '<div class="team-pop-card" role="dialog" aria-modal="true" aria-labelledby="team-pop-name">' +
+        '<button class="team-pop-close" type="button" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>' +
+        '<div class="team-pop-img"><img alt="" /></div>' +
+        '<div class="team-pop-body"><h3 id="team-pop-name"></h3><p class="team-pop-role"></p><div class="team-pop-text"></div><div class="team-pop-links"></div></div>' +
+      '</div>';
+    document.body.appendChild(overlay);
+    var card = $(".team-pop-card", overlay), closeBtn = $(".team-pop-close", overlay);
+    var img = $("img", overlay), nameEl = $("h3", overlay), roleEl = $(".team-pop-role", overlay), textEl = $(".team-pop-text", overlay), linksEl = $(".team-pop-links", overlay);
+    var open = false, src = null, last = null, tl = null;
+
+    function show(member) {
+      if (open) return; open = true; src = member; last = document.activeElement;
+      var handle = $("h3", member).textContent.trim();
+      img.src = $("img", member).currentSrc || $("img", member).src;
+      nameEl.textContent = handle;
+      roleEl.textContent = $("p", member).textContent.trim();
+      textEl.innerHTML = (member.getAttribute("data-bio") || "").split("|").filter(Boolean).map(function (t) { return "<p>" + t + "</p>"; }).join("");
+      var tg = "https://t.me/" + handle.replace(/^@/, "");
+      linksEl.innerHTML = '<a class="pill pill--orange" href="' + tg + '" target="_blank" rel="noopener">Telegram ' + handle + ' ↗</a>';
+      overlay.hidden = false;
+      if (lenis) lenis.stop();
+      var a = member.getBoundingClientRect(), b = card.getBoundingClientRect();
+      var parts = [nameEl, roleEl].concat(Array.prototype.slice.call(textEl.children), Array.prototype.slice.call(linksEl.children));
+      if (tl) tl.kill();
+      tl = gsap.timeline()
+        .fromTo(overlay, { backgroundColor: "rgba(12,12,13,0)" }, { backgroundColor: "rgba(12,12,13,0.55)", duration: 0.4 }, 0)
+        .fromTo(card, {
+          x: a.left + a.width / 2 - (b.left + b.width / 2), y: a.top + a.height / 2 - (b.top + b.height / 2),
+          scaleX: Math.max(a.width / b.width, 0.25), scaleY: Math.max(a.height / b.height, 0.25), opacity: 0.6, borderRadius: "16px"
+        }, { x: 0, y: 0, scaleX: 1, scaleY: 1, opacity: 1, borderRadius: "1.5rem", duration: 0.65, ease: "back.out(1.4)" }, 0)
+        .fromTo(parts, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.04, ease: "power2.out" }, 0.18)
+        .fromTo(closeBtn, { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2.5)" }, 0.3);
+      setTimeout(function () { closeBtn.focus(); }, 300);
+    }
+    function hide() {
+      if (!open) return; open = false;
+      var a = src.getBoundingClientRect(), b = card.getBoundingClientRect();
+      if (tl) tl.kill();
+      tl = gsap.timeline({ onComplete: function () { overlay.hidden = true; gsap.set(card, { clearProps: "all" }); if (lenis) lenis.start(); if (last) last.focus(); } })
+        .to(closeBtn, { scale: 0, duration: 0.2 }, 0)
+        .to(card, {
+          x: a.left + a.width / 2 - (b.left + b.width / 2), y: a.top + a.height / 2 - (b.top + b.height / 2),
+          scaleX: Math.max(a.width / b.width, 0.25), scaleY: Math.max(a.height / b.height, 0.25), opacity: 0, duration: 0.45, ease: "power3.in"
+        }, 0.05)
+        .to(overlay, { backgroundColor: "rgba(12,12,13,0)", duration: 0.35 }, 0.1);
+    }
+    cards.forEach(function (m) {
+      m.setAttribute("tabindex", "0");
+      m.setAttribute("role", "button");
+      m.setAttribute("aria-haspopup", "dialog");
+      m.addEventListener("click", function () { show(m); });
+      m.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(m); } });
+    });
+    closeBtn.addEventListener("click", hide);
+    overlay.addEventListener("click", function (e) { if (e.target === overlay) hide(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && open) hide(); });
   }
 
   /* House rules: CSS-sticky cards that stack; a bar fills as each card

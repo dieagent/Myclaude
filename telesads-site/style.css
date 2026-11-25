@@ -74,9 +74,9 @@ h1, h2, h3, p { margin: 0; }
   background: var(--ink); color: #fff; cursor: pointer; overflow: hidden; isolation: isolate;
   font-size: 0.875rem; font-weight: 500;
 }
-.talk-dot { position: relative; display: grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--orange); }
+.talk-dot { position: relative; display: grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: transparent; }
 .talk-dot svg { width: 0.75rem; height: 0.75rem; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.talk-fill { position: absolute; right: 0.25rem; top: 50%; width: 1.9rem; height: 1.9rem; margin-top: -0.95rem; border-radius: 50%; background: var(--orange); z-index: -1; transform: scale(0); }
+.talk-fill { position: absolute; right: calc(0.25rem - 2px); top: 50%; width: 1.9rem; height: 1.9rem; margin-top: -0.95rem; border-radius: 50%; background: var(--orange); z-index: -1; }
 .talk-text { position: relative; }
 .talk--sm { font-size: 0.875rem; }
 
@@ -95,7 +95,7 @@ html.is-loading .loader { display: grid; pointer-events: auto; }
 .nav > * { pointer-events: auto; }
 .nav-left { display: flex; gap: 0.5rem; }
 .nav-pill { background: #fff; padding: 0.6rem 1.25rem; border-radius: 999px; font-size: 0.9375rem; font-weight: 500; transition: background 0.3s, color 0.3s; }
-.nav-pill:hover { background: var(--ink); color: #fff; }
+
 .nav-logo { color: var(--orange); line-height: 0; display: block; }
 .nav-logo .logo-svg { width: 12.5rem; height: auto; aspect-ratio: 738 / 112; }
 .logo-svg { display: block; fill: none; stroke: currentColor; stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
@@ -519,3 +519,43 @@ html:not(.js) .faq-a { height: auto; }
   .cap-list li { font-size: 0.875rem; padding: 0.5rem 1rem; }
 }
 .ab-line .wd { display: inline-block; white-space: nowrap; }
+
+/* ---------- Interaction details ---------- */
+.nav-pill { position: relative; overflow: hidden; isolation: isolate; }
+.nav-pill .stroke-fill { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.nav-pill .stroke-fill svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.nav-pill .stroke-fill path { fill: none; stroke: var(--orange); stroke-linecap: round; stroke-linejoin: round; }
+.nav-pill-text { position: relative; }
+
+.project-fg, .project-reveal { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.project-fg { z-index: 2; }
+.project-fg path { fill: none; stroke: var(--c); stroke-linecap: round; stroke-linejoin: round; }
+.project-reveal { z-index: 3; }
+.project-arrow svg { transform-origin: 50% 50%; }
+
+.deck-cursor { position: absolute; left: 0; top: 0; z-index: 20; width: 4.5rem; height: 4.5rem; border-radius: 50%; background: var(--ink); display: grid; place-items: center; pointer-events: none; opacity: 0; }
+.deck-cursor svg { width: 1.5rem; fill: none; stroke: #fff; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.deck-panel.has-cursor, .deck-panel.has-cursor * { cursor: none; }
+.deck-panel.has-cursor .deck-ticks button { cursor: pointer; }
+@media (hover: none) { .deck-cursor { display: none; } }
+
+.member { cursor: pointer; }
+.member:focus-visible { outline: 3px solid #fff; outline-offset: 6px; border-radius: 1rem; }
+.team-pop { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; padding: 1.5rem; background: rgba(12,12,13,0.55); }
+.team-pop[hidden] { display: none; }
+.team-pop-card { position: relative; display: grid; grid-template-columns: 0.9fr 1.1fr; width: min(56rem, 100%); max-height: calc(100vh - 3rem); overflow: auto; background: var(--cream); border-radius: 1.5rem; border: 3px solid var(--ink); box-shadow: 0.75rem 0.75rem 0 var(--orange); will-change: transform; }
+.team-pop-img { background: var(--cream-2); }
+.team-pop-img img { display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 5 / 6; }
+.team-pop-body { padding: 2.5rem 2.5rem 2rem; display: flex; flex-direction: column; gap: 1rem; }
+.team-pop-body h3 { font-family: var(--f-display); font-weight: 800; font-stretch: 75%; text-transform: none; color: var(--orange); font-size: 3.5rem; line-height: 0.9; word-break: break-all; }
+.team-pop-role { font-size: 0.875rem; font-weight: 600; text-transform: uppercase; }
+.team-pop-text p { font-size: 1.125rem; line-height: 1.45; margin-bottom: 0.75rem; }
+.team-pop-links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.team-pop-close { position: absolute; top: 1rem; right: 1rem; z-index: 2; width: 2.75rem; height: 2.75rem; border-radius: 50%; border: 0; background: var(--ink); cursor: pointer; display: grid; place-items: center; }
+.team-pop-close svg { width: 1.1rem; fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; }
+@media (max-width: 767px) {
+  .team-pop-card { grid-template-columns: 1fr; }
+  .team-pop-img img { aspect-ratio: 4 / 3; }
+  .team-pop-body { padding: 1.5rem; }
+  .team-pop-body h3 { font-size: 2.5rem; }
+}
