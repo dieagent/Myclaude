@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="logo" viewBox="-6 -6 738 112"><path d="M4 8 H30 C56 8 66 42 48 47 C30 52 28 18 52 12 C64 9 78 8 96 8"/><path d="M49 47 V100"/><path d="M170 8 H112 V100 H170"/><path d="M112 54 H162"/><path d="M196 3 V100 H252"/><path d="M332 8 H274 V100 H332"/><path d="M274 54 H324"/><path d="M414 22 C408 11 398 5 386 5 C370 5 359 15 359 29 C359 59 417 45 417 74 C417 90 403 100 386 100 C372 100 361 93 355 81"/><path d="M470 100 L506 5 L542 100"/><path d="M483 68 H529"/><path d="M562 8 V100 H588 C618 100 636 80 636 53 C636 26 618 8 588 8 H562"/><path d="M714 22 C708 11 698 5 686 5 C670 5 659 15 659 29 C659 59 717 45 717 74 C717 90 703 100 686 100 C672 100 661 93 655 81"/></symbol></svg>
   <a class="skip" href="#main">Skip to content</a>
 
   <!-- ===================== LOADER ===================== -->
@@ -31,12 +32,7 @@
       <path class="wipe wipe-orange" d="M-300 -100 C 200 300, 500 -50, 800 300 S 1300 700, 1900 500" />
       <path class="wipe wipe-pink" d="M1900 -100 C 1400 300, 1100 -50, 800 300 S 300 700, -300 500" />
     </svg>
-    <div class="loader-logo">
-      <svg class="loader-plane" viewBox="0 0 220 120" aria-hidden="true">
-        <path class="loader-trail" d="M10 100 C 40 40, 90 110, 110 70 S 90 20, 130 30 S 180 60, 200 30" />
-      </svg>
-      <div class="loader-word"><span>TELES</span> <span class="o">ADS</span></div>
-    </div>
+    <div class="loader-logo"><svg class="loader-mark logo-svg" viewBox="-6 -6 738 112"><path class="lg lg-0" d="M4 8 H30 C56 8 66 42 48 47 C30 52 28 18 52 12 C64 9 78 8 96 8"/><path class="lg lg-0" d="M49 47 V100"/><path class="lg lg-1" d="M170 8 H112 V100 H170"/><path class="lg lg-1" d="M112 54 H162"/><path class="lg lg-2" d="M196 3 V100 H252"/><path class="lg lg-3" d="M332 8 H274 V100 H332"/><path class="lg lg-3" d="M274 54 H324"/><path class="lg lg-4" d="M414 22 C408 11 398 5 386 5 C370 5 359 15 359 29 C359 59 417 45 417 74 C417 90 403 100 386 100 C372 100 361 93 355 81"/><path class="lg lg-5" d="M470 100 L506 5 L542 100"/><path class="lg lg-5" d="M483 68 H529"/><path class="lg lg-6" d="M562 8 V100 H588 C618 100 636 80 636 53 C636 26 618 8 588 8 H562"/><path class="lg lg-7" d="M714 22 C708 11 698 5 686 5 C670 5 659 15 659 29 C659 59 717 45 717 74 C717 90 703 100 686 100 C672 100 661 93 655 81"/></svg></div>
   </div>
 
   <!-- ===================== NAV ===================== -->
@@ -46,7 +42,7 @@
       <a href="#work" class="nav-pill">Work</a>
       <a href="#sectors" class="nav-pill">Sectors</a>
     </div>
-    <a href="#top" class="nav-logo" aria-label="TELES ADS home">TELES ADS</a>
+    <a href="#top" class="nav-logo" aria-label="TELES ADS home"><svg class="logo-svg"><use href="#logo"/></svg></a>
     <div class="nav-right">
       <p class="nav-meta">Telegram-first<br />India · UAE · Worldwide</p>
       <button class="talk magnetic cta-btn" type="button">
@@ -193,21 +189,13 @@
         <h2 class="sec-title dual" data-split>Built and<br />shipped</h2>
       </div>
       <div class="projects">
-        <a class="project" href="https://t.me/GGShot_Bot" target="_blank" rel="noopener" style="--bg:#DFF5E8; --c:#1E9E5A">
+        <!-- DEMO mock-ups: replace assets/work/*.jpg with real project photos before launch. Cards with data-demo are placeholder showcases. -->
+        <a class="project" href="https://t.me/GGShot_Bot" target="_blank" rel="noopener" style="--c:#1E9E5A">
           <div class="project-media">
-            <div class="chat">
-              <div class="chat-head"><span class="chat-ava">GG</span><span><b>GGShot Bot</b><small>bot</small></span></div>
-              <span class="bub bub--in" style="width:62%"></span>
-              <span class="bub bub--out" style="width:48%"></span>
-              <span class="bub bub--in" style="width:70%"></span>
-              <span class="chat-btn">START</span>
-            </div>
-            <svg class="project-brush" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
-              <defs><mask id="pm1" maskUnits="userSpaceOnUse"><path class="pm-path" d="M-20 20 C 120 80, 280 -20, 420 40 M420 40 C 260 120, 120 60, -20 150 M-20 150 C 140 210, 260 120, 420 200 M420 200 C 260 260, 120 230, -20 300" stroke="#fff" stroke-width="140" fill="none" stroke-linecap="round" /></mask></defs>
-              <g mask="url(#pm1)"><rect width="400" height="300" fill="var(--c)" /></g>
-              <path class="pf-path" d="M-20 20 C 120 80, 280 -20, 420 40 M420 40 C 260 120, 120 60, -20 150 M-20 150 C 140 210, 260 120, 420 200 M420 200 C 260 260, 120 230, -20 300" stroke="var(--ink)" stroke-width="10" fill="none" stroke-linecap="round" />
-            </svg>
-            <span class="project-hover">Open in Telegram ↗</span>
+            <img src="assets/work/ggshot-bot.jpg" alt="Telegram bot with a guided menu" width="900" height="1125" loading="lazy" />
+            <span class="project-panel" aria-hidden="true"></span>
+            <svg class="project-brush" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true"><path class="pf-path" d="M-20 40 C120 100 280 0 420 60 C260 160 120 100 -20 210 C140 280 260 180 420 290 C260 370 120 330 -20 410 C140 480 260 430 420 520" /></svg>
+            <span class="project-hover">Open ↗</span>
           </div>
           <div class="project-meta">
             <span class="project-ico">GG</span>
@@ -215,69 +203,68 @@
             <span class="project-arrow"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg></span>
           </div>
         </a>
-        <a class="project" href="https://t.me/tradingmentorsIgnaIs_bot" target="_blank" rel="noopener" style="--bg:#DCE8FF; --c:#1A54E4">
+        <a class="project" href="https://t.me/tradingmentorsIgnaIs_bot" target="_blank" rel="noopener" style="--c:#1A54E4">
           <div class="project-media">
-            <div class="chat">
-              <div class="chat-head"><span class="chat-ava">TM</span><span><b>Trading Mentors</b><small>bot</small></span></div>
-              <span class="bub bub--in" style="width:56%"></span>
-              <span class="bub bub--in" style="width:74%"></span>
-              <span class="bub bub--out" style="width:40%"></span>
-              <span class="chat-btn">START</span>
-            </div>
-            <svg class="project-brush" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
-              <defs><mask id="pm2" maskUnits="userSpaceOnUse"><path class="pm-path" d="M-20 20 C 120 80, 280 -20, 420 40 M420 40 C 260 120, 120 60, -20 150 M-20 150 C 140 210, 260 120, 420 200 M420 200 C 260 260, 120 230, -20 300" stroke="#fff" stroke-width="140" fill="none" stroke-linecap="round" /></mask></defs>
-              <g mask="url(#pm2)"><rect width="400" height="300" fill="var(--c)" /></g>
-              <path class="pf-path" d="M-20 20 C 120 80, 280 -20, 420 40 M420 40 C 260 120, 120 60, -20 150 M-20 150 C 140 210, 260 120, 420 200 M420 200 C 260 260, 120 230, -20 300" stroke="var(--ink)" stroke-width="10" fill="none" stroke-linecap="round" />
-            </svg>
-            <span class="project-hover">Open in Telegram ↗</span>
+            <img src="assets/work/trading-mentors-bot.jpg" alt="Trading Mentors bot onboarding menu" width="900" height="1125" loading="lazy" />
+            <span class="project-panel" aria-hidden="true"></span>
+            <svg class="project-brush" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true"><path class="pf-path" d="M-20 40 C120 100 280 0 420 60 C260 160 120 100 -20 210 C140 280 260 180 420 290 C260 370 120 330 -20 410 C140 480 260 430 420 520" /></svg>
+            <span class="project-hover">Open ↗</span>
           </div>
           <div class="project-meta">
-            <span class="project-ico" style="background:#1A54E4">TM</span>
+            <span class="project-ico">TM</span>
             <span class="project-name">@tradingmentorsIgnaIs_bot<small>Telegram bot</small></span>
             <span class="project-arrow"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg></span>
           </div>
         </a>
-        <a class="project" href="https://t.me/AIGPT5Trading_bot" target="_blank" rel="noopener" style="--bg:#FDE1FD; --c:#9B2FA8">
+        <a class="project" href="https://t.me/AIGPT5Trading_bot" target="_blank" rel="noopener" style="--c:#9B2FA8">
           <div class="project-media">
-            <div class="chat">
-              <div class="chat-head"><span class="chat-ava">AI</span><span><b>AI GPT5 Trading</b><small>bot</small></span></div>
-              <span class="bub bub--out" style="width:44%"></span>
-              <span class="bub bub--in" style="width:72%"></span>
-              <span class="bub bub--in" style="width:52%"></span>
-              <span class="chat-btn">START</span>
-            </div>
-            <svg class="project-brush" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
-              <defs><mask id="pm3" maskUnits="userSpaceOnUse"><path class="pm-path" d="M-20 20 C 120 80, 280 -20, 420 40 M420 40 C 260 120, 120 60, -20 150 M-20 150 C 140 210, 260 120, 420 200 M420 200 C 260 260, 120 230, -20 300" stroke="#fff" stroke-width="140" fill="none" stroke-linecap="round" /></mask></defs>
-              <g mask="url(#pm3)"><rect width="400" height="300" fill="var(--c)" /></g>
-              <path class="pf-path" d="M-20 20 C 120 80, 280 -20, 420 40 M420 40 C 260 120, 120 60, -20 150 M-20 150 C 140 210, 260 120, 420 200 M420 200 C 260 260, 120 230, -20 300" stroke="var(--ink)" stroke-width="10" fill="none" stroke-linecap="round" />
-            </svg>
-            <span class="project-hover">Open in Telegram ↗</span>
+            <img src="assets/work/ai-trading-bot.jpg" alt="AI assistant bot answering questions" width="900" height="1125" loading="lazy" />
+            <span class="project-panel" aria-hidden="true"></span>
+            <svg class="project-brush" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true"><path class="pf-path" d="M-20 40 C120 100 280 0 420 60 C260 160 120 100 -20 210 C140 280 260 180 420 290 C260 370 120 330 -20 410 C140 480 260 430 420 520" /></svg>
+            <span class="project-hover">Open ↗</span>
           </div>
           <div class="project-meta">
-            <span class="project-ico" style="background:#9B2FA8">AI</span>
-            <span class="project-name">@AIGPT5Trading_bot<small>Telegram bot</small></span>
+            <span class="project-ico">AI</span>
+            <span class="project-name">@AIGPT5Trading_bot<small>AI assistant bot</small></span>
             <span class="project-arrow"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg></span>
           </div>
         </a>
-        <a class="project" href="https://t.me/quant_pocket_bot" target="_blank" rel="noopener" style="--bg:#FFE9C7; --c:#E07B00">
+        <a class="project" href="https://t.me/quant_pocket_bot" target="_blank" rel="noopener" style="--c:#E07B00">
           <div class="project-media">
-            <div class="chat">
-              <div class="chat-head"><span class="chat-ava">QP</span><span><b>Quant Pocket</b><small>bot</small></span></div>
-              <span class="bub bub--in" style="width:66%"></span>
-              <span class="bub bub--out" style="width:52%"></span>
-              <span class="bub bub--in" style="width:46%"></span>
-              <span class="chat-btn">START</span>
-            </div>
-            <svg class="project-brush" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
-              <defs><mask id="pm4" maskUnits="userSpaceOnUse"><path class="pm-path" d="M-20 20 C 120 80, 280 -20, 420 40 M420 40 C 260 120, 120 60, -20 150 M-20 150 C 140 210, 260 120, 420 200 M420 200 C 260 260, 120 230, -20 300" stroke="#fff" stroke-width="140" fill="none" stroke-linecap="round" /></mask></defs>
-              <g mask="url(#pm4)"><rect width="400" height="300" fill="var(--c)" /></g>
-              <path class="pf-path" d="M-20 20 C 120 80, 280 -20, 420 40 M420 40 C 260 120, 120 60, -20 150 M-20 150 C 140 210, 260 120, 420 200 M420 200 C 260 260, 120 230, -20 300" stroke="var(--ink)" stroke-width="10" fill="none" stroke-linecap="round" />
-            </svg>
-            <span class="project-hover">Open in Telegram ↗</span>
+            <img src="assets/work/quant-pocket-bot.jpg" alt="Bot sending an automated daily report" width="900" height="1125" loading="lazy" />
+            <span class="project-panel" aria-hidden="true"></span>
+            <svg class="project-brush" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true"><path class="pf-path" d="M-20 40 C120 100 280 0 420 60 C260 160 120 100 -20 210 C140 280 260 180 420 290 C260 370 120 330 -20 410 C140 480 260 430 420 520" /></svg>
+            <span class="project-hover">Open ↗</span>
           </div>
           <div class="project-meta">
-            <span class="project-ico" style="background:#E07B00">QP</span>
-            <span class="project-name">@quant_pocket_bot<small>Telegram bot</small></span>
+            <span class="project-ico">QP</span>
+            <span class="project-name">@quant_pocket_bot<small>Automated reporting bot</small></span>
+            <span class="project-arrow"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg></span>
+          </div>
+        </a>
+        <a class="project" href="https://t.me/TelesAds" target="_blank" rel="noopener" style="--c:#2AABEE" data-demo>
+          <div class="project-media">
+            <img src="assets/work/channel-promotion.jpg" alt="Sponsored Telegram channel post" width="900" height="1125" loading="lazy" />
+            <span class="project-panel" aria-hidden="true"></span>
+            <svg class="project-brush" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true"><path class="pf-path" d="M-20 40 C120 100 280 0 420 60 C260 160 120 100 -20 210 C140 280 260 180 420 290 C260 370 120 330 -20 410 C140 480 260 430 420 520" /></svg>
+            <span class="project-hover">Open ↗</span>
+          </div>
+          <div class="project-meta">
+            <span class="project-ico">TG</span>
+            <span class="project-name">Channel Promotion<small>Telegram Ads</small></span>
+            <span class="project-arrow"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg></span>
+          </div>
+        </a>
+        <a class="project" href="https://t.me/TelesAds" target="_blank" rel="noopener" style="--c:#FF3D7F" data-demo>
+          <div class="project-media">
+            <img src="assets/work/meta-ad-creatives.jpg" alt="Set of Meta and Instagram ad creatives" width="900" height="1125" loading="lazy" />
+            <span class="project-panel" aria-hidden="true"></span>
+            <svg class="project-brush" viewBox="0 0 400 500" preserveAspectRatio="none" aria-hidden="true"><path class="pf-path" d="M-20 40 C120 100 280 0 420 60 C260 160 120 100 -20 210 C140 280 260 180 420 290 C260 370 120 330 -20 410 C140 480 260 430 420 520" /></svg>
+            <span class="project-hover">Open ↗</span>
+          </div>
+          <div class="project-meta">
+            <span class="project-ico">IG</span>
+            <span class="project-name">Ad Creatives<small>Meta &amp; Instagram Ads</small></span>
             <span class="project-arrow"><svg viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg></span>
           </div>
         </a>
@@ -489,7 +476,7 @@
     <p class="footer-legal">Advertising results depend on niche, offer, creative, audience, budget and platform conditions. TELES ADS does not guarantee financial returns, member counts or conversions, and does not provide investment advice. Regulated categories run only where lawful and compliant with platform rules.</p>
     <p class="footer-copy">© <span data-year>2026</span> TELES ADS</p>
     <div class="footer-mark-wrap" aria-hidden="true">
-      <svg class="footer-mark" viewBox="0 0 1400 250" preserveAspectRatio="none"><text x="0" y="232" textLength="1400" lengthAdjust="spacingAndGlyphs">TELES ADS</text></svg>
+      <svg class="footer-mark logo-svg" viewBox="-6 -6 738 112"><use href="#logo"/></svg>
     </div>
   </footer>
 
@@ -499,7 +486,7 @@
       <path d="M-300 450 C 200 0, 600 900, 900 400 S 1500 0, 1900 500" />
     </svg>
     <div class="contact-inner">
-      <div class="contact-top"><span class="contact-logo">TELES ADS</span><button class="contact-close" type="button"><span>Close</span> ✕</button></div>
+      <div class="contact-top"><span class="contact-logo" role="img" aria-label="TELES ADS"><svg class="logo-svg"><use href="#logo"/></svg></span><button class="contact-close" type="button"><span>Close</span> ✕</button></div>
       <div class="contact-left">
         <h2 id="contact-title" class="contact-title">Let’s grow<br />something</h2>
         <p class="contact-copy">The fastest way to reach us is Telegram. Tell us what you’re growing, who it’s for and your budget range.</p>

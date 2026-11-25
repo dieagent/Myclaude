@@ -37,3 +37,28 @@ The page stays usable without JavaScript, if the CDN fails, and with reduced mot
 **Vercel or Cloudflare Pages:** import the repository with no build command, and set the output directory to the repository root.
 
 **Custom domain (telesads.com):** add the domain in your host's settings, then point your DNS at the host as it instructs.
+
+## Logo
+
+`assets/teles-ads-logo.svg` is the TELES ADS wordmark: monoline letters, with a custom T whose crossbar curls into a loop. The page uses it as an inline SVG symbol (`#logo`), so it takes the text colour (`currentColor`). The loader draws it stroke by stroke.
+
+## Fonts
+
+No paid licences are needed. Both fonts are free on Google Fonts:
+- **Bricolage Grotesque**, at its condensed width (75) and weight 800, for headlines. It stands in for MD Nichrome.
+- **Inter Tight** for body text. It stands in for Neue Montreal.
+
+## Before launch: replace the demo images
+
+The Work cards use rendered mock-ups in `assets/work/` (900 × 1125 px, 4:5):
+
+| File | Card |
+| --- | --- |
+| `ggshot-bot.jpg` | @GGShot_Bot |
+| `trading-mentors-bot.jpg` | @tradingmentorsIgnaIs_bot |
+| `ai-trading-bot.jpg` | @AIGPT5Trading_bot |
+| `quant-pocket-bot.jpg` | @quant_pocket_bot |
+| `channel-promotion.jpg` | Channel Promotion (demo showcase, marked `data-demo`) |
+| `meta-ad-creatives.jpg` | Ad Creatives (demo showcase, marked `data-demo`) |
+
+To use real photos, save them over these files with the same names, or change the `src` in `index.html`. Keep the 4:5 ratio.

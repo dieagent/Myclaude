@@ -107,20 +107,18 @@
     }
     setTimeout(exit, 6000);   // hard safety: never lock the visitor out
 
-    var trail = $(".loader-trail", loader);
-    var word = $(".loader-word", loader);
-    var split = SplitText.create(word, { type: "chars", charsClass: "ch" });
+    var tMark = $$(".lg-0", loader);
+    var letters = $$(".lg:not(.lg-0)", loader);
     var pink = $(".wipe-pink", loader), orange = $(".wipe-orange", loader);
 
     gsap.set([pink, orange], { drawSVG: "0% 100%" });
-    gsap.set(trail, { drawSVG: "0%" });
-    gsap.set(split.chars, { scale: 0, yPercent: 40, rotation: function () { return gsap.utils.random(-30, 30); }, transformOrigin: "50% 80%" });
+    gsap.set(tMark.concat(letters), { drawSVG: "0%" });
 
     var tl = gsap.timeline();
-    tl.to(trail, { drawSVG: "100%", duration: 0.75, ease: "power2.inOut" })
-      .to(split.chars, { scale: 1, yPercent: 0, rotation: 0, duration: 0.6, ease: "back.out(3)", stagger: 0.045 }, "-=0.3")
-      .to(trail, { drawSVG: "100% 100%", duration: 0.5, ease: "power2.in" }, "+=0.2")
-      .add("wipe", "+=0.1")
+    tl.to(tMark, { drawSVG: "100%", duration: 0.9, ease: "power2.inOut", stagger: 0.25 })
+      .to(letters, { drawSVG: "100%", duration: 0.45, ease: "power2.out", stagger: 0.06 }, "-=0.3")
+      .fromTo(".loader-mark", { scale: 0.96 }, { scale: 1, duration: 0.6, ease: "back.out(3)" }, "-=0.2")
+      .add("wipe", "+=0.25")
       .to(pink, { drawSVG: "100% 100%", duration: 0.85, ease: "power3.inOut" }, "wipe")
       .to(".loader-logo", { opacity: 0, duration: 0.25 }, "wipe+=0.2")
       .to(orange, { drawSVG: "100% 100%", duration: 0.85, ease: "power3.inOut" }, "wipe+=0.22")
@@ -277,14 +275,15 @@
       gsap.set(media, { scale: 1.45, rotationX: 18, rotationY: -12, transformPerspective: 1200 });
       gsap.set($(".project-meta", card), { opacity: 0, y: 20 });
 
-      var pf = $(".pf-path", card), pm = $(".pm-path", card), label = $(".project-hover", card), arrow = $(".project-arrow", card);
-      gsap.set([pf, pm], { drawSVG: "0%" });
-      var hover = gsap.timeline({ paused: true });
-      hover.to(pf, { drawSVG: "100%", duration: 0.45, ease: "power2.in" })
-        .to(pm, { drawSVG: "100%", duration: 0.55, ease: "power2.out" }, "-=0.15")
-        .to(pf, { opacity: 0, duration: 0.2 }, "-=0.2")
-        .to(label, { opacity: 1, y: 0, duration: 0.3 }, "-=0.25");
+      var pf = $(".pf-path", card), panel = $(".project-panel", card), label = $(".project-hover", card), arrow = $(".project-arrow", card);
+      gsap.set(pf, { drawSVG: "0%", opacity: 0 });
       gsap.set(label, { y: 20 });
+      var hover = gsap.timeline({ paused: true });
+      hover.set(pf, { opacity: 1 })
+        .to(pf, { drawSVG: "100%", duration: 0.5, ease: "power2.in" })
+        .fromTo(panel, { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.55, ease: "power3.out" }, 0.3)
+        .to(pf, { opacity: 0, duration: 0.2 }, 0.7)
+        .to(label, { opacity: 1, y: 0, duration: 0.3 }, 0.65);
       if (canHover) {
         card.addEventListener("mouseenter", function () {
           hover.timeScale(1).play();

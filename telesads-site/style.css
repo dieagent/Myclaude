@@ -88,10 +88,7 @@ html.is-loading .loader { display: grid; pointer-events: auto; }
 .wipe-orange { stroke: var(--orange); }
 .wipe-pink { stroke: var(--pink); }
 .loader-logo { position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
-.loader-plane { width: 9rem; height: 5rem; overflow: visible; }
-.loader-trail { fill: none; stroke: var(--orange); stroke-width: 7; stroke-linecap: round; }
-.loader-word { font-family: var(--f-display); font-weight: 500; font-size: 5.5rem; line-height: 1; color: var(--orange); letter-spacing: -0.01em; }
-.loader-word .ch { display: inline-block; }
+.loader-mark { width: 34rem; height: auto; aspect-ratio: 738 / 112; color: var(--orange); }
 
 /* ---------- Nav ---------- */
 .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 1.25rem var(--gutter); pointer-events: none; }
@@ -99,7 +96,9 @@ html.is-loading .loader { display: grid; pointer-events: auto; }
 .nav-left { display: flex; gap: 0.5rem; }
 .nav-pill { background: #fff; padding: 0.6rem 1.25rem; border-radius: 999px; font-size: 0.9375rem; font-weight: 500; transition: background 0.3s, color 0.3s; }
 .nav-pill:hover { background: var(--ink); color: #fff; }
-.nav-logo { font-family: var(--f-display); font-weight: 400; font-size: 2.25rem; color: var(--orange); letter-spacing: -0.01em; line-height: 1; }
+.nav-logo { color: var(--orange); line-height: 0; display: block; }
+.nav-logo .logo-svg { width: 12.5rem; height: auto; aspect-ratio: 738 / 112; }
+.logo-svg { display: block; fill: none; stroke: currentColor; stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
 .nav-right { display: flex; align-items: center; justify-content: flex-end; gap: 4rem; }
 .nav-meta { font-size: 0.875rem; font-weight: 500; line-height: 1.2; }
 .menu-toggle { display: none; width: 2.5rem; height: 2.5rem; border: 0; padding: 0; background: none; cursor: pointer; }
@@ -156,10 +155,12 @@ html.is-loading .loader { display: grid; pointer-events: auto; }
 
 /* ---------- Work ---------- */
 .work { background: var(--cream); padding: 6rem 0 4rem; }
-.projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; padding: 0 0.5rem; perspective: 1400px; }
+.projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; padding: 0 0.5rem; perspective: 1400px; }
 .project { display: block; }
 .project-mask { will-change: clip-path; border-radius: 1.25rem; overflow: hidden; }
-.project-media { position: relative; aspect-ratio: 16 / 11; border-radius: 1.25rem; overflow: hidden; background: var(--bg); display: grid; place-items: center; }
+.project-media { position: relative; aspect-ratio: 4 / 5; border-radius: 1.25rem; overflow: hidden; background: var(--cream-2); }
+.project-media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s cubic-bezier(.2,.8,.2,1); }
+.project:hover .project-media img { transform: scale(1.04); }
 .chat { width: 46%; background: #fff; border-radius: 1.25rem; padding: 1rem; display: flex; flex-direction: column; gap: 0.6rem; box-shadow: 0 1.5rem 3rem -1.5rem rgba(0,0,0,0.25); transform: rotate(-4deg); transition: transform 0.6s cubic-bezier(.2,.8,.2,1); }
 .project:hover .chat { transform: rotate(2deg) scale(1.04); }
 .chat-head { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.4rem; }
@@ -267,8 +268,7 @@ html:not(.js) .faq-a { height: auto; }
 .footer-legal { position: relative; max-width: 44rem; margin-top: 4rem; font-size: 0.75rem; opacity: 0.75; }
 .footer-copy { position: relative; font-size: 0.8125rem; margin-top: 1rem; }
 .footer-mark-wrap { position: relative; margin: 0.5rem -0.25rem 0; }
-.footer-mark { display: block; width: 100%; height: auto; aspect-ratio: 1400 / 250; overflow: visible; transform-origin: 50% 100%; }
-.footer-mark text { font-family: var(--f-display); font-weight: 500; font-size: 300px; fill: var(--offwhite); }
+.footer-mark { width: 100%; height: auto; aspect-ratio: 738 / 112; color: var(--offwhite); stroke-width: 12; transform-origin: 50% 100%; padding: 0 0.5rem 1.5rem; }
 
 /* ---------- Contact overlay ---------- */
 .contact { position: fixed; inset: 0; z-index: 80; }
@@ -277,7 +277,8 @@ html:not(.js) .faq-a { height: auto; }
 .contact-wipe path { fill: none; stroke: var(--orange); stroke-width: 1700; stroke-linecap: round; }
 .contact-inner { position: relative; height: 100%; display: grid; grid-template-columns: 1.15fr 1fr; grid-template-rows: auto 1fr; gap: 2rem 4rem; padding: 1.25rem var(--gutter) 3rem; color: #fff; overflow-y: auto; }
 .contact-top { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: center; }
-.contact-logo { font-family: var(--f-display); font-size: 2.25rem; line-height: 1; }
+.contact-logo { color: #fff; line-height: 0; }
+.contact-logo .logo-svg { width: 12.5rem; height: auto; aspect-ratio: 738 / 112; }
 .contact-close { border: 0; border-radius: 999px; background: var(--ink); color: #fff; padding: 0.75rem 1.3rem; cursor: pointer; font-weight: 500; }
 .contact-left, .contact-right { align-self: center; }
 .contact-title { font-size: 9rem; }
@@ -304,7 +305,8 @@ html:not(.js) .faq-a { height: auto; }
 @media (max-width: 767px) {
   .nav { grid-template-columns: auto 1fr; padding: 1rem var(--gutter); }
   .nav-left, .nav-right .talk { display: none; }
-  .nav-logo { font-size: 1.75rem; order: -1; }
+  .nav-logo { order: -1; }
+  .nav-logo .logo-svg { width: 10rem; }
   .menu-toggle { display: block; }
   .menu-links a { font-size: 3.5rem; }
   .hero { padding-top: 5rem; min-height: 0; }
@@ -365,7 +367,7 @@ html:not(.js) .faq-a { height: auto; }
   .footer-c { align-items: flex-end; padding-top: 0; }
   .footer-legal { margin-top: 2.5rem; }
   .contact-inner { grid-template-columns: 1fr; grid-template-rows: auto; align-content: start; gap: 1.5rem; padding-top: 1rem; }
-  .contact-logo { font-size: 1.75rem; }
+  .contact-logo .logo-svg { width: 10rem; }
   .contact-title { font-size: 4.75rem; margin-top: 2rem; }
   .contact-copy { font-size: 1.0625rem; margin-top: 1.25rem; }
   .contact-link { font-size: 2.75rem; }
@@ -507,3 +509,10 @@ html:not(.js) .faq-a { height: auto; }
   .reach-facts b { font-size: 3rem; }
   .reach-quote { font-size: 1.75rem; }
 }
+
+@media (max-width: 767px) { .loader-mark { width: 18rem; } .footer-mark { stroke-width: 14; padding-bottom: 1rem; } }
+
+/* Work card hover: brush stroke, then a colour panel wipes down (hover devices only) */
+.project-panel { position: absolute; inset: 0; background: var(--c); clip-path: inset(0 0 100% 0); pointer-events: none; }
+.project-brush path { fill: none; stroke: var(--ink); stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; }
+@media (hover: none) { .project-brush, .project-panel, .project-hover { display: none; } }
